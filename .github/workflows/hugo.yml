@@ -35,7 +35,7 @@ jobs:
         run: hugo --minify
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@HASH_HERE # v4.0.0
+        uses: actions/upload-pages-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # 4.6.2
         with:
           path: ./public
 
@@ -48,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/deploy-pages@ # v4.6.2
