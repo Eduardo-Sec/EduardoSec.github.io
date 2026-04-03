@@ -48,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@HASH_HERE # v4.x.x
+        uses: actions/deploy-pages@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
