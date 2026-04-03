@@ -68,7 +68,6 @@ nav {
 /* ── HERO ── */
 .hero {
   padding: 96px 48px 72px;
-  max-width: 860px;
 }
 
 .hero-tag {
@@ -99,7 +98,7 @@ nav {
   font-size: 17px;
   color: var(--text-muted);
   line-height: 1.75;
-  max-width: 540px;
+  max-width: 640px;
   margin-bottom: 32px;
 }
 
@@ -141,7 +140,7 @@ nav {
 
 .hero-meta {
   display: flex;
-  gap: 28px 40px;
+  gap: 28px 80px;
   margin-top: 48px;
   padding-top: 48px;
   border-top: 1px solid var(--border-subtle);
@@ -475,4 +474,8 @@ footer { border-top: 1px solid var(--border-subtle); }
   .page-hero { padding: 48px 24px 36px; }
   .page-hero h1 { font-size: 32px; }
   .post-content { font-size: 15px; }
+}
+
+.meta-full {
+  flex-basis: 100%;
 }
