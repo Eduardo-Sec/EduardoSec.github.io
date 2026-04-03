@@ -578,3 +578,34 @@ footer { border-top: 1px solid var(--border-subtle); }
 }
 
 .back-btn:hover { color: var(--ac); }
+
+/* ── TOOLS ── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.tool-group-label {
+  font-size: 11px;
+  color: var(--ac);
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tool {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: #111;
+  color: #c8c8c8;
+  border: 1px solid #222;
+  font-family: 'JetBrains Mono', monospace;
+}
