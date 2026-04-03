@@ -9,7 +9,7 @@ The best way to reach me is email. I check it regularly and will get back to you
 
 ## Elsewhere
 
-[GitHub](https://github.com/EduardoSec) -- where my code and writeups live.
+[GitHub](https://github.com/Eduardo-Sec) -- where my code and writeups live.
 
 [LinkedIn](https://www.linkedin.com/in/eduardo-bustamante-a605aa2ab) -- for professional connections and opportunities.
 
