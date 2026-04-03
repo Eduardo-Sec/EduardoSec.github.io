@@ -26,7 +26,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@75d2a84fff180d08cde96b5d044e86ed7c9593a1 # v3.0.0
+        uses: peaceiris/actions-hugo@v3 # 3.0.0
         with:
           hugo-version: '0.159.2'
           extended: true
