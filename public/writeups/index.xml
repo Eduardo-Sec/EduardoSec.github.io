@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Writeups on Eduardo Bustamante</title>
-    <link>http://localhost:1313/writeups/</link>
+    <link>http://localhost:1313/EduardoSec.github.io/writeups/</link>
     <description>Recent content in Writeups on Eduardo Bustamante</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 03 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/writeups/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/EduardoSec.github.io/writeups/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Detecting bootable USB media with Wazuh</title>
-      <link>http://localhost:1313/writeups/wazuh-usb-bootable-detection/</link>
+      <link>http://localhost:1313/EduardoSec.github.io/writeups/wazuh-usb-bootable-detection/</link>
       <pubDate>Thu, 03 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/writeups/wazuh-usb-bootable-detection/</guid>
+      <guid>http://localhost:1313/EduardoSec.github.io/writeups/wazuh-usb-bootable-detection/</guid>
       <description>&lt;p&gt;Removable media is one of those threat vectors that gets underestimated. A USB drive sitting on a desk looks harmless, but it might contain a live Linux environment, a Windows installer, a forensic toolkit, or a persistence mechanism that bypasses the running OS entirely. Standard endpoint controls don&amp;rsquo;t help much if someone boots from USB before your agent ever starts.&lt;/p&gt;&#xA;&lt;p&gt;This writeup covers a Wazuh detection use case for identifying bootable USB media on Linux endpoints. The detection is heuristic, meaning it combines filesystem type, volume label patterns, and known boot artifact paths to make an informed judgment about whether a connected USB device is likely bootable. It won&amp;rsquo;t catch everything, but it gives you visibility you wouldn&amp;rsquo;t otherwise have.&lt;/p&gt;</description>
     </item>
   </channel>
