@@ -476,3 +476,7 @@ footer { border-top: 1px solid var(--border-subtle); }
   .page-hero h1 { font-size: 32px; }
   .post-content { font-size: 15px; }
 }
+
+.meta-full {
+  flex-basis: 100%;
+}
