@@ -25,7 +25,7 @@ After graduation I'm starting my master's degree and positioning myself for role
 
 ## Outside of work
 
-I'm passionate about MMA. I watch it closely and train regularly. There's something about the discipline and problem solving involved that I've always connected with.
+I'm passionate about MMA. I watch it closely and train as well. There's something about the discipline and problem solving involved that I've always connected with.
 
 ## Get in touch
 
