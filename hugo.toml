@@ -1,0 +1,13 @@
+baseURL = "https://ebustamante.dev/"
+languageCode = "en-us"
+title = "Eduardo Bustamante"
+theme = "ebustamante"
+
+[params]
+  description = "Cybersecurity student at UNOmaha. SOC Analyst Intern and Detection Engineering, ARM malware analysis, blue team."
+  status = "UNO · Omaha, NE"
+
+[markup]
+  [markup.highlight]
+    style = "dracula"
+    lineNos = false

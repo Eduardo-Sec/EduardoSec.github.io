@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eduardo Bustamante</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Eduardo Bustamante</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Detecting bootable USB media with Wazuh</title>
+      <link>http://localhost:1313/writeups/wazuh-usb-bootable-detection/</link>
+      <pubDate>Thu, 03 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/writeups/wazuh-usb-bootable-detection/</guid>
+      <description>&lt;p&gt;Removable media is one of those threat vectors that gets underestimated. A USB drive sitting on a desk looks harmless, but it might contain a live Linux environment, a Windows installer, a forensic toolkit, or a persistence mechanism that bypasses the running OS entirely. Standard endpoint controls don&amp;rsquo;t help much if someone boots from USB before your agent ever starts.&lt;/p&gt;&#xA;&lt;p&gt;This writeup covers a Wazuh detection use case for identifying bootable USB media on Linux endpoints. The detection is heuristic, meaning it combines filesystem type, volume label patterns, and known boot artifact paths to make an informed judgment about whether a connected USB device is likely bootable. It won&amp;rsquo;t catch everything, but it gives you visibility you wouldn&amp;rsquo;t otherwise have.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;I didn&amp;rsquo;t take a straight path into cybersecurity.&lt;/p&gt;&#xA;&lt;p&gt;My original plan was accounting, which I walked away from pretty quickly once I realized it wasn&amp;rsquo;t for me. After that I spent time trying to break into the electrical trade, didn&amp;rsquo;t have much luck finding work, and ended up working for a railroad contractor. It paid the bills but I felt like I was just going through the motions.&lt;/p&gt;&#xA;&lt;p&gt;What changed things was teaching myself how to build a website. I wanted to put together an ecommerce site and started learning UI/UX in the process. That opened a door I didn&amp;rsquo;t expect. Digging into web development exposed me to the broader world of IT, and somewhere in that process I found cybersecurity. It clicked immediately in a way that nothing else had. I enrolled at UNO shortly after and haven&amp;rsquo;t looked back.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>http://localhost:1313/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/contact/</guid>
+      <description>&lt;p&gt;The best way to reach me is email. I check it regularly and will get back to you.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;mailto:eabustamante1@gmail.com&#34;&gt;eabustamante1@gmail.com&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;elsewhere&#34;&gt;Elsewhere&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/EduardoSec&#34;&gt;GitHub&lt;/a&gt; &amp;ndash; where my code and writeups live.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.linkedin.com/in/eduardo-bustamante-a605aa2ab&#34;&gt;LinkedIn&lt;/a&gt; &amp;ndash; for professional connections and opportunities.&lt;/p&gt;&#xA;&lt;p&gt;I am open to connecting with other security professionals, discussing detection engineering or GRC, or talking through internship and job opportunities for after graduation in 2028.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Projects</title>
+      <link>http://localhost:1313/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/</guid>
+      <description>&lt;p&gt;These are things I am actively working on. Nothing here is listed as finished until it actually is.&lt;/p&gt;&#xA;&lt;h2 id=&#34;proxmox-home-lab&#34;&gt;Proxmox home lab&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Status: in progress, waiting on hardware&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Building a dedicated security lab on a Bosgame P3 Lite mini PC running Proxmox. The plan is to run pfSense on the dual 2.5GbE NICs for real WAN/LAN separation, a Wazuh server to collect logs from all lab VMs, a Kali attack machine, an isolated Windows sandbox for malware analysis, and a Ubuntu target with a QEMU ARM environment for low-level work.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

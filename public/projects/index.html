@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects · Eduardo Bustamante</title>
+  <meta name="description" content="Cybersecurity student at UNOmaha. SOC Analyst Intern and Detection Engineering, ARM malware analysis, blue team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v=1775196686">
+</head>
+<body>
+  <nav>
+  <a href="/" class="nav-logo mono">eb<span>.</span>dev</a>
+  <div class="nav-links">
+    <a href="/about">about</a>
+    <a href="/writeups">writeups</a>
+    <a href="/projects">projects</a>
+    <a href="/contact">contact</a>
+  </div>
+</nav>
+  <main>
+    
+<div class="page-hero">
+  <div class="hero-tag mono">// projects</div>
+  <h1>Projects<em>.</em></h1>
+</div>
+
+<section class="site-section">
+  <div class="post-content">
+    <p>These are things I am actively working on. Nothing here is listed as finished until it actually is.</p>
+<h2 id="proxmox-home-lab">Proxmox home lab</h2>
+<p><strong>Status: in progress, waiting on hardware</strong></p>
+<p>Building a dedicated security lab on a Bosgame P3 Lite mini PC running Proxmox. The plan is to run pfSense on the dual 2.5GbE NICs for real WAN/LAN separation, a Wazuh server to collect logs from all lab VMs, a Kali attack machine, an isolated Windows sandbox for malware analysis, and a Ubuntu target with a QEMU ARM environment for low-level work.</p>
+<p>The goal is to have a self-contained detection engineering pipeline running on my own hardware rather than relying on cloud labs or single-VM setups. Once it&rsquo;s running I&rsquo;ll be documenting the setup and writing up detection use cases built from real traffic generated inside the lab.</p>
+<h2 id="arm-malware-analysis-environment">ARM malware analysis environment</h2>
+<p><strong>Status: in progress</strong></p>
+<p>Setting up a local environment for static and dynamic analysis of ARM architecture binaries. This means Ghidra with ARM processor support on my desktop and QEMU for emulation on the lab machine once the hardware arrives.</p>
+<p>The starting point is Mirai botnet variants since they are ARM-compiled, well-documented, and still active in the wild. The end goal is a paired analysis writeup and set of Wazuh detection rules built from actual behavioral findings, not just pulled from public threat intel.</p>
+<p>This is a longer-term project that will run alongside my Malware Analysis course in fall 2027.</p>
+<h2 id="portfolio-site">Portfolio site</h2>
+<p><strong>Status: in progress</strong></p>
+<p>This site. Built with Hugo and a custom theme from scratch. Deployed on GitHub Pages and pointed at a personal domain. No templates, no page builders, just HTML, CSS, and Hugo templating.</p>
+<p>The plan is to migrate to self-hosted on the Proxmox lab once that is up and running, using a Cloudflare tunnel for public access without exposing a home IP.</p>
+<p>Source is on GitHub if you want to look at how it is put together.</p>
+<h2 id="security">Security+</h2>
+<p><strong>Status: in progress, exam scheduled for summer 2025</strong></p>
+<p>Working through the SY0-701 objectives with a focus on Domain 4 since Security Operations is the heaviest weighted section and maps most directly to the detection engineering work I do day to day. Using Professor Messer videos and Jason Dion practice exams.</p>
+<p>After Security+ the plan is CySA+ since it is the blue team cert that aligns most directly with where I want to take my career.</p>
+
+  </div>
+</section>
+
+  </main>
+  <footer>
+  <div class="status-bar">
+    <div class="status-left">
+      <div class="status-dot"></div>
+      <span class="status-text mono">ebustamante.dev</span>
+    </div>
+    <div class="status-right mono">UNO · Omaha, NE</div>
+  </div>
+</footer>
+</body>
+</html>

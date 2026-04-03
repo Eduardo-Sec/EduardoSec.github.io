@@ -1,0 +1,88 @@
+{{ define "main" }}
+<div class="hero">
+  <div class="hero-tag mono">// SOC analyst · detection engineering</div>
+  <h1>Eduardo<br>Bustamante<em>.</em></h1>
+  <p class="hero-sub">Cybersecurity student at UNO and SOC Analyst Intern with the NebraskaCYBER MATRIX program. I build and tune detections, triage alerts, and analyze threats in real environments.</p>
+  <div class="hero-actions">
+    <a href="/writeups" class="btn-primary">View writeups</a>
+    <a href="https://github.com/yourusername" class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub →</a>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Currently</span>
+      <span class="meta-value"><span>SOC Analyst Intern</span> · NebraskaCYBER MATRIX</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Focus</span>
+      <span class="meta-value">Wazuh · detection engineering · blue team</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Degree</span>
+      <span class="meta-value">BS Cybersecurity · Fast Track MS</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Minor</span>
+      <span class="meta-value">Computer Science</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Concentration</span>
+      <span class="meta-value">NSA <span>CAE-CO / CAE-CD</span></span>
+    </div>
+  </div>
+</div>
+
+<section class="site-section">
+  <div class="section-header">
+    <span class="section-num mono">01</span>
+    <span class="section-title">Recent writeups</span>
+  </div>
+  <div class="writeups">
+    {{ range first 3 (where .Site.RegularPages "Section" "writeups") }}
+    <a href="{{ .Permalink }}" class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot"></div>
+        <span class="writeup-title">{{ .Title }}</span>
+      </div>
+      <div class="writeup-right">
+        <span class="writeup-tag">{{ .Params.tag }}</span>
+        <span class="writeup-date mono">{{ .Date.Format "2006-01" }}</span>
+      </div>
+    </a>
+    {{ else }}
+    <div class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot" style="background:#2a2a2a;"></div>
+        <span class="writeup-title" style="color:#555;">Writeups coming soon</span>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<section class="site-section">
+  <div class="section-header">
+    <span class="section-num mono">02</span>
+    <span class="section-title">Focus areas</span>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-tag">Detection</div>
+      <div class="card-title">Wazuh rule engineering</div>
+      <div class="card-desc">Writing and tuning detection rules based on real attacker behavior in production environments.</div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card">
+      <div class="card-tag">Operations</div>
+      <div class="card-title">SOC analysis</div>
+      <div class="card-desc">Alert triage, threat analysis, and incident response as part of the NebraskaCYBER MATRIX SOC program.</div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card">
+      <div class="card-tag">Infrastructure</div>
+      <div class="card-title">Home lab</div>
+      <div class="card-desc">Proxmox, pfSense + Suricata, isolated malware sandbox, full detection pipeline.</div>
+      <div class="card-arrow">→</div>
+    </div>
+  </div>
+</section>
+{{ end }}

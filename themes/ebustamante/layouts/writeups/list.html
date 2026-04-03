@@ -1,0 +1,31 @@
+{{ define "main" }}
+<div class="page-hero">
+  <div class="hero-tag mono">// writeups</div>
+  <h1>Writeups<em>.</em></h1>
+  <p class="hero-sub">Detection engineering notes, CTF walkthroughs, and security research.</p>
+</div>
+
+<section class="site-section">
+  <div class="writeups">
+    {{ range (where .Site.RegularPages "Section" "writeups") }}
+    <a href="{{ .Permalink }}" class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot"></div>
+        <span class="writeup-title">{{ .Title }}</span>
+      </div>
+      <div class="writeup-right">
+        <span class="writeup-tag">{{ .Params.tag }}</span>
+        <span class="writeup-date mono">{{ .Date.Format "2006-01" }}</span>
+      </div>
+    </a>
+    {{ else }}
+    <div class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot" style="background:#2a2a2a;"></div>
+        <span class="writeup-title" style="color:#555;">Writeups coming soon</span>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

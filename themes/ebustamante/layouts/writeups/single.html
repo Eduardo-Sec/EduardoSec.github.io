@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="page-hero">
+  <div class="hero-tag mono">// {{ .Params.tag }}</div>
+  <h1>{{ .Title }}<em>.</em></h1>
+  <div class="post-meta">
+    <span class="meta-label">Date</span>
+    <span class="meta-value">{{ .Date.Format "January 2, 2006" }}</span>
+  </div>
+</div>
+
+<section class="site-section">
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+</section>
+{{ end }}

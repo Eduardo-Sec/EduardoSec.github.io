@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="page-hero">
+  <div class="hero-tag mono">// {{ .Title | lower }}</div>
+  <h1>{{ .Title }}<em>.</em></h1>
+</div>
+
+<section class="site-section">
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+</section>
+{{ end }}
