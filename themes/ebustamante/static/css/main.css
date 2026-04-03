@@ -493,7 +493,7 @@ footer { border-top: 1px solid var(--border-subtle); }
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
-  padding-top: 48px;
+  padding-top: 80px;
 }
 
 .terminal {
@@ -502,7 +502,7 @@ footer { border-top: 1px solid var(--border-subtle); }
   border-radius: 10px;
   overflow: hidden;
   width: 100%;
-  max-width: 420px;
+  max-width: 520px;
 }
 
 .terminal-bar {
@@ -531,8 +531,8 @@ footer { border-top: 1px solid var(--border-subtle); }
 }
 
 .terminal-body {
-  padding: 20px;
-  font-size: 13px;
+  padding: 24px;
+  font-size: 14px;
   line-height: 1.7;
 }
 
