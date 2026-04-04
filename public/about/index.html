@@ -9,6 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
 </head>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', function() {
+      links.classList.toggle('open');
+    });
+  });
+</script>
 <body>
   <nav>
   <a href="/" class="nav-logo mono">eb<span>.</span>dev</a>
@@ -16,12 +25,20 @@
     <a href="/about">about</a>
     <a href="/writeups">writeups</a>
     <a href="/projects">projects</a>
+    <a href="/resume">resume</a>
     <a href="/contact">contact</a>
+    <a href="/pgp">pgp</a>
   </div>
+  <button class="nav-toggle" aria-label="toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
   <main>
     
 <div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
   <div class="hero-tag mono">// about</div>
   <h1>About<em>.</em></h1>
 </div>
@@ -39,7 +56,7 @@
 <p>I&rsquo;m interested in both engineering and GRC, and honestly I don&rsquo;t see them as separate tracks. The best security work happens when you understand the technical depth and can also communicate risk in a way that drives decisions. That&rsquo;s what I&rsquo;m building toward.</p>
 <p>After graduation I&rsquo;m starting my master&rsquo;s degree and positioning myself for roles where I can work on both sides of that. Whether that looks like a detection engineering role, a security architecture position, or something GRC-focused, I want to be the kind of professional who can move across those areas rather than being locked into one lane.</p>
 <h2 id="outside-of-work">Outside of work</h2>
-<p>I&rsquo;m passionate about MMA. I watch it closely and train regularly. There&rsquo;s something about the discipline and problem solving involved that I&rsquo;ve always connected with.</p>
+<p>I&rsquo;m passionate about MMA. I watch it closely and train as well. There&rsquo;s something about the discipline and problem solving involved that I&rsquo;ve always connected with.</p>
 <h2 id="get-in-touch">Get in touch</h2>
 <p>If you want to talk security, compare notes on Wazuh detections, or just connect, feel free to reach out.</p>
 
