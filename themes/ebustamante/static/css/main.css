@@ -694,3 +694,152 @@ footer {
     padding: 14px 16px 14px 40px;
   }
 }
+
+/* ── RESUME ── */
+.resume-actions {
+  padding: 24px 48px 0;
+}
+
+.resume {
+  max-width: 860px;
+  padding: 48px;
+}
+
+.resume-header {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-name {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.resume-contact a {
+  color: var(--ac);
+}
+
+.resume-section {
+  margin-bottom: 40px;
+}
+
+.resume-section-title {
+  font-size: 11px;
+  color: var(--ac);
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.resume-entry {
+  margin-bottom: 28px;
+}
+
+.resume-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.resume-entry-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.resume-role {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.resume-org {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.resume-entry-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.resume-date {
+  font-size: 12px;
+  color: var(--ac);
+}
+
+.resume-location {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.resume-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.resume-list li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding-left: 16px;
+  position: relative;
+}
+
+.resume-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--ac);
+  font-size: 11px;
+}
+
+.resume-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resume-skill-group {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.resume-skill-label {
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.resume-skill-value {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .resume-actions { padding: 24px 24px 0; }
+  .resume { padding: 24px; }
+  .resume-entry-right { align-items: flex-start; }
+  .resume-skill-label { min-width: 120px; }
+}
