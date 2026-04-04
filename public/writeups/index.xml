@@ -9,11 +9,11 @@
     <lastBuildDate>Thu, 03 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/writeups/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Detecting bootable USB media with Wazuh</title>
-      <link>http://localhost:1313/writeups/wazuh-usb-bootable-detection/</link>
+      <title>Building my portfolio site with Hugo and GitHub Pages</title>
+      <link>http://localhost:1313/writeups/building-portfolio-site/</link>
       <pubDate>Thu, 03 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/writeups/wazuh-usb-bootable-detection/</guid>
-      <description>&lt;p&gt;Removable media is one of those threat vectors that gets underestimated. A USB drive sitting on a desk looks harmless, but it might contain a live Linux environment, a Windows installer, a forensic toolkit, or a persistence mechanism that bypasses the running OS entirely. Standard endpoint controls don&amp;rsquo;t help much if someone boots from USB before your agent ever starts.&lt;/p&gt;&#xA;&lt;p&gt;This writeup covers a Wazuh detection use case for identifying bootable USB media on Linux endpoints. The detection is heuristic, meaning it combines filesystem type, volume label patterns, and known boot artifact paths to make an informed judgment about whether a connected USB device is likely bootable. It won&amp;rsquo;t catch everything, but it gives you visibility you wouldn&amp;rsquo;t otherwise have.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/writeups/building-portfolio-site/</guid>
+      <description>&lt;p&gt;I wanted a portfolio site that actually looked like something I built rather than something I dragged and dropped together. Most security portfolio sites look identical, a template with a headshot, a skills progress bar, and a contact form. I wanted something cleaner and more intentional, so I built mine from scratch using Hugo and deployed it on GitHub Pages with a custom domain.&lt;/p&gt;&#xA;&lt;p&gt;This writeup covers how I built it, the problems I ran into, and the security decisions I made along the way.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
