@@ -9,6 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
 </head>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', function() {
+      links.classList.toggle('open');
+    });
+  });
+</script>
 <body>
   <nav>
   <a href="/" class="nav-logo mono">eb<span>.</span>dev</a>
@@ -16,12 +25,20 @@
     <a href="/about">about</a>
     <a href="/writeups">writeups</a>
     <a href="/projects">projects</a>
+    <a href="/resume">resume</a>
     <a href="/contact">contact</a>
+    <a href="/pgp">pgp</a>
   </div>
+  <button class="nav-toggle" aria-label="toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
   <main>
     
 <div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
   <div class="hero-tag mono">// projects</div>
   <h1>Projects<em>.</em></h1>
 </div>

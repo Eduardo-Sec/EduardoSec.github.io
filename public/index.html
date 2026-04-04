@@ -10,6 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
 </head>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', function() {
+      links.classList.toggle('open');
+    });
+  });
+</script>
 <body>
   <nav>
   <a href="/" class="nav-logo mono">eb<span>.</span>dev</a>
@@ -17,39 +26,76 @@
     <a href="/about">about</a>
     <a href="/writeups">writeups</a>
     <a href="/projects">projects</a>
+    <a href="/resume">resume</a>
     <a href="/contact">contact</a>
+    <a href="/pgp">pgp</a>
   </div>
+  <button class="nav-toggle" aria-label="toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
   <main>
     
 <div class="hero">
-  <div class="hero-tag mono">// SOC analyst · detection engineering</div>
-  <h1>Eduardo<br>Bustamante<em>.</em></h1>
-  <p class="hero-sub">Cybersecurity student at UNO and SOC Analyst Intern with the NebraskaCYBER MATRIX program. I build and tune detections, triage alerts, and analyze threats in real environments.</p>
-  <div class="hero-actions">
-    <a href="/writeups" class="btn-primary">View writeups</a>
-    <a href="https://github.com/Eduardo-Sec" class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub →</a>
+  <div class="hero-left">
+    <div class="hero-tag mono">// SOC analyst · detection engineering</div>
+    <h1>Eduardo<br>Bustamante<em>.</em></h1>
+    <p class="hero-sub">Cybersecurity student at UNO and SOC Analyst Intern with the NebraskaCYBER MATRIX program. I build and tune detections, triage alerts, and analyze threats in real environments.</p>
+    <div class="hero-actions">
+      <a href="/writeups" class="btn-primary">View writeups</a>
+      <a href="https://github.com/Eduardo-Sec" class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub →</a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Currently</span>
+        <span class="meta-value"><span>SOC Analyst Intern</span> · NebraskaCYBER MATRIX</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Focus</span>
+        <span class="meta-value">Wazuh · detection engineering · blue team</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Degree</span>
+        <span class="meta-value">BS Cybersecurity · Fast Track MS</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Minor</span>
+        <span class="meta-value">Computer Science</span>
+      </div>
+      <div class="meta-item meta-full">
+        <span class="meta-label">Concentration</span>
+        <span class="meta-value">NSA <span>CAE-CO (Cyber Operations) / CAE-CD (Cyber Defense)</span></span>
+      </div>
+    </div>
   </div>
-  <div class="hero-meta">
-    <div class="meta-item">
-      <span class="meta-label">Currently</span>
-      <span class="meta-value"><span>SOC Analyst Intern</span> · NebraskaCYBER MATRIX</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Focus</span>
-      <span class="meta-value">Wazuh · detection engineering · blue team</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Degree</span>
-      <span class="meta-value">BS Cybersecurity · Fast Track MS</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Minor</span>
-      <span class="meta-value">Computer Science</span>
-    </div>
-    <div class="meta-item meta-full">
-      <span class="meta-label">Concentration</span>
-      <span class="meta-value">NSA <span>CAE-CO (Cyber Operations) / CAE-CD (Cyber Defense)</span></span>
+  <div class="hero-right">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-title mono">eb@portfolio ~ </span>
+      </div>
+      <div class="terminal-body mono">
+        <p><span class="t-prompt">$</span> whoami</p>
+        <p class="t-output">eduardo bustamante</p>
+        <br>
+        <p><span class="t-prompt">$</span> cat status.txt</p>
+        <p class="t-output">SOC Analyst Intern @ NebraskaCYBER MATRIX</p>
+        <p class="t-output">BS Cybersecurity @ UNO -- NSA CAE-CO / CAE-CD</p>
+        <p class="t-output">Fast Track MS program</p>
+        <br>
+        <p><span class="t-prompt">$</span> ls ctf/</p>
+        <p class="t-output">NCL</p>
+        <p class="t-output">NULLify HSCTF (volunteer)</p>
+        <br>
+        <p><span class="t-prompt">$</span> cat certs/in-progress.txt</p>
+        <p class="t-output">Security+ SY0-701</p>
+        <br>
+        <p><span class="t-prompt">$</span> <span class="t-cursor">_</span></p>
+      </div>
     </div>
   </div>
 </div>
@@ -61,13 +107,13 @@
   </div>
   <div class="writeups">
     
-    <a href="http://localhost:1313/writeups/wazuh-usb-bootable-detection/" class="writeup-row">
+    <a href="http://localhost:1313/writeups/building-portfolio-site/" class="writeup-row">
       <div class="writeup-left">
         <div class="writeup-dot"></div>
-        <span class="writeup-title">Detecting bootable USB media with Wazuh</span>
+        <span class="writeup-title">Building my portfolio site with Hugo and GitHub Pages</span>
       </div>
       <div class="writeup-right">
-        <span class="writeup-tag">detection</span>
+        <span class="writeup-tag">project</span>
         <span class="writeup-date mono">2025-04</span>
       </div>
     </a>
@@ -98,6 +144,65 @@
       <div class="card-title">Home lab</div>
       <div class="card-desc">Proxmox, pfSense + Suricata, isolated malware sandbox, full detection pipeline.</div>
       <div class="card-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section">
+  <div class="section-header">
+    <span class="section-num mono">03</span>
+    <span class="section-title">Tools & technologies</span>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-group">
+      <div class="tool-group-label mono">Detection & SIEM</div>
+      <div class="tool-list">
+        <span class="tool">Wazuh</span>
+        <span class="tool">Splunk</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label mono">Operating systems</div>
+      <div class="tool-list">
+        <span class="tool">Kali Linux</span>
+        <span class="tool">Ubuntu</span>
+        <span class="tool">Rocky Linux</span>
+        <span class="tool">Windows</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label mono">Tools</div>
+      <div class="tool-list">
+        <span class="tool">Ghidra</span>
+        <span class="tool">QEMU</span>
+        <span class="tool">Wireshark</span>
+        <span class="tool">Nmap</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label mono">Frameworks</div>
+      <div class="tool-list">
+        <span class="tool">NIST SP 800-30</span>
+        <span class="tool">NIST CSF</span>
+        <span class="tool">CMMC</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label mono">Languages</div>
+      <div class="tool-list">
+        <span class="tool">Python</span>
+        <span class="tool">C</span>
+        <span class="tool">ARM assembly</span>
+        <span class="tool">Bash</span>
+      </div>
+    </div>
+    <div class="tool-group">
+      <div class="tool-group-label mono">Infrastructure</div>
+      <div class="tool-list">
+        <span class="tool">Proxmox</span>
+        <span class="tool">pfSense</span>
+        <span class="tool">Git</span>
+      </div>
     </div>
   </div>
 </section>
