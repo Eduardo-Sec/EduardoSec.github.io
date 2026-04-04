@@ -24,6 +24,9 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
@@ -468,7 +471,10 @@ nav {
 }
 
 /* ── FOOTER ── */
-footer { border-top: 1px solid var(--border-subtle); }
+footer {
+  border-top: 1px solid var(--border-subtle);
+  margin-top: auto;
+}
 
 .status-bar {
   display: flex;
