@@ -11,3 +11,5 @@ theme = "ebustamante"
   [markup.highlight]
     style = "dracula"
     lineNos = false
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
