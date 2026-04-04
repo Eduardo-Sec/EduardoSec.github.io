@@ -9,6 +9,7 @@ I wanted a portfolio site that actually looked like something I built rather tha
 
 This writeup covers how I built it, the problems I ran into, and the security decisions I made along the way.
 
+---
 
 ## Choosing the stack
 
@@ -19,7 +20,6 @@ Hugo generates all the HTML at build time rather than at request time, which mea
 I built a completely custom theme rather than using a pre-built one. Pre-built themes look generic no matter how much you tweak them and I wanted something that actually felt like mine. The design direction was dark background, soft purple accent, clean modern typography, nothing neon or hacker cliched.
 
 ---
-
 ## Getting Hugo running
 
 The first real problem I ran into was getting Hugo installed on Windows. The standard installation methods kept failing.
@@ -35,7 +35,6 @@ hugo v0.159.2+extended windows/amd64
 ```
 
 ---
-
 ## Building the theme
 
 I structured the Hugo project with a fully custom theme folder rather than pulling in someone else's layout. The key files are a base template that every page inherits from, partials for the nav and footer that get included automatically, and separate layout files for the homepage, writeups list, individual writeup posts, and inner pages like about and projects.
@@ -45,7 +44,6 @@ One problem that cost me time was CSS changes not showing up in the browser even
 The fix was running the dev server with the `--disableFastRender` flag, which forces Hugo to fully rebuild every file on every change instead of using its cache. That immediately resolved it.
 
 ---
-
 ## Deploying to GitHub Pages
 
 Deploying to GitHub Pages with a custom domain involves a few moving parts that have to be set up in the right order.
@@ -57,7 +55,6 @@ For the build and deploy process I set up a GitHub Actions workflow that runs au
 Pointing my `ebustamante.dev` domain at GitHub Pages required adding four A records in Namecheap's Advanced DNS settings pointing to GitHub's Pages IP addresses, plus a CNAME record for the www subdomain. I also added a CNAME file to the repository root containing my domain so GitHub Pages knows which site to serve when a request hits their servers. The `.dev` TLD requires HTTPS which GitHub Pages handles automatically through Let's Encrypt once DNS propagates.
 
 ---
-
 ## Securing the workflow
 
 After getting the site running my coworker on the DevOps team pointed out that my GitHub Actions workflow was using version tags for third party actions rather than pinning them to specific commit hashes. This matters because tags are mutable, if someone compromises a repository that publishes an action they can move the tag to point at a malicious commit and your workflow will run that malicious code on the next push. Pinning to a full commit hash is the only way to guarantee you are running exactly the code you audited.
@@ -88,7 +85,6 @@ if: github.event_name != 'pull_request'
 This lets the build job run on Dependabot PRs and report a green status check so the PR can be merged, but nothing actually deploys until the PR is merged into master and a real push triggers the full workflow.
 
 ---
-
 ## Branch protection and environment settings
 
 I set up a branch protection rule on master with two requirements. Status checks for both build and deploy must pass before anything can merge, which means a broken Hugo build cannot accidentally go live. Force pushes are blocked to prevent accidentally rewriting git history.
@@ -96,7 +92,6 @@ I set up a branch protection rule on master with two requirements. Status checks
 I also switched to a pull request based workflow rather than pushing directly to master. It adds a small amount of overhead but it mirrors how real teams work and it means every change goes through the build and deploy checks before going live.
 
 ---
-
 ## What the site runs on
 
 The final stack is Hugo generating a fully static site, GitHub Actions building and deploying on every push to master, GitHub Pages serving the output, and Cloudflare's DNS pointing `ebustamante.dev` at GitHub's servers. No server side code, no database, no CMS login panel.
@@ -104,7 +99,6 @@ The final stack is Hugo generating a fully static site, GitHub Actions building 
 When the Bosgame P3 Lite home lab is set up the plan is to migrate to self hosting on an Ubuntu VM with Nginx and a Cloudflare tunnel for public access. The tunnel means my home IP is never exposed, Cloudflare proxies all traffic through their network. The domain stays the same and only the destination changes.
 
 ---
-
 ## Takeaways
 
 Building the site from scratch rather than using a template took more time upfront but the result is something that actually feels like mine. The security decisions along the way, pinning action hashes, setting up Dependabot, restricting the Pages environment, are small details but they are the kind of thing that shows you think about this stuff seriously rather than just going through the motions.
