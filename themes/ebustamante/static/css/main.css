@@ -653,3 +653,24 @@ footer { border-top: 1px solid var(--border-subtle); }
     font-size: 14px;
   }
 }
+
+/* ── SEARCH ── */
+.search-wrap {
+  margin-bottom: 16px;
+}
+
+.search-input {
+  width: 100%;
+  background: #0d0d0d;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.search-input::placeholder { color: var(--text-dim); }
+
+.search-input:focus { border-color: var(--ac); }
