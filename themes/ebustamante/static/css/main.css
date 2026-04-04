@@ -674,3 +674,8 @@ footer { border-top: 1px solid var(--border-subtle); }
 .search-input::placeholder { color: var(--text-dim); }
 
 .search-input:focus { border-color: var(--ac); }
+@media (max-width: 768px) {
+  .page-hero {
+    padding-bottom: 24px;
+  }
+}
