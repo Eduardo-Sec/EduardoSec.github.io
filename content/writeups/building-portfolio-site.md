@@ -9,9 +9,8 @@ I wanted a portfolio site that actually looked like something I built rather tha
 
 This writeup covers how I built it, the problems I ran into, and the security decisions I made along the way.
 
----
 
-## Choosing the stack
+# Choosing the stack
 
 I went with Hugo as the static site generator for a few reasons. Static sites have a much smaller attack surface than something like WordPress, no database to inject into, no admin login panel to brute force, no server side code to exploit. The files GitHub Pages serves are just HTML, CSS, and JavaScript. There is genuinely not much to attack.
 
