@@ -7,7 +7,17 @@
 </div>
 
 <section class="site-section">
-  <div class="writeups">
+  <div class="search-wrap">
+    <input
+      type="text"
+      id="search-input"
+      class="search-input mono"
+      placeholder="search writeups..."
+      autocomplete="off"
+    />
+  </div>
+
+  <div class="writeups" id="writeups-list">
     {{ range (where .Site.RegularPages "Section" "writeups") }}
     <a href="{{ .Permalink }}" class="writeup-row">
       <div class="writeup-left">
@@ -28,5 +38,56 @@
     </div>
     {{ end }}
   </div>
+
+  <div id="search-results" class="writeups" style="display:none;"></div>
 </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.0.0/fuse.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('search-input');
+    const list = document.getElementById('writeups-list');
+    const results = document.getElementById('search-results');
+    let fuse;
+
+    fetch('/index.json')
+      .then(r => r.json())
+      .then(data => {
+        const writeups = data.filter(p => p.url.includes('/writeups/'));
+        fuse = new Fuse(writeups, {
+          keys: ['title', 'content'],
+          threshold: 0.4,
+        });
+      });
+
+    input.addEventListener('input', function() {
+      const q = this.value.trim();
+      if (!q || !fuse) {
+        list.style.display = '';
+        results.style.display = 'none';
+        results.innerHTML = '';
+        return;
+      }
+      list.style.display = 'none';
+      results.style.display = '';
+      const hits = fuse.search(q);
+      if (hits.length === 0) {
+        results.innerHTML = '<div class="writeup-row"><div class="writeup-left"><div class="writeup-dot" style="background:#2a2a2a;"></div><span class="writeup-title" style="color:#555;">No results found</span></div></div>';
+        return;
+      }
+      results.innerHTML = hits.map(h => `
+        <a href="${h.item.url}" class="writeup-row">
+          <div class="writeup-left">
+            <div class="writeup-dot"></div>
+            <span class="writeup-title">${h.item.title}</span>
+          </div>
+          <div class="writeup-right">
+            <span class="writeup-tag">${h.item.tags || ''}</span>
+            <span class="writeup-date mono">${h.item.date ? h.item.date.slice(0,7) : ''}</span>
+          </div>
+        </a>
+      `).join('');
+    });
+  });
+</script>
 {{ end }}
