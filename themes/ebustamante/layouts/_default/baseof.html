@@ -10,9 +10,13 @@
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 </head>
 <script>
-  const toggle = document.querySelector('.nav-toggle');
-  const links = document.querySelector('.nav-links');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', function() {
+      links.classList.toggle('open');
+    });
+  });
 </script>
 <body>
   {{ partial "nav.html" . }}
