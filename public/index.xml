@@ -16,13 +16,6 @@
       <description>&lt;p&gt;I wanted a portfolio site that actually looked like something I built rather than something I dragged and dropped together. Most security portfolio sites look identical, a template with a headshot, a skills progress bar, and a contact form. I wanted something cleaner and more intentional, so I built mine from scratch using Hugo and deployed it on GitHub Pages with a custom domain.&lt;/p&gt;&#xA;&lt;p&gt;This writeup covers how I built it, the problems I ran into, and the security decisions I made along the way.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>404</title>
-      <link>http://localhost:1313/404/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/404/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>About</title>
       <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
