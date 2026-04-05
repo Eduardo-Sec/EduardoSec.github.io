@@ -1,10 +1,12 @@
 {{ define "main" }}
 <div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
   <div class="hero-tag mono">// {{ .Params.tag }}</div>
   <h1>{{ .Title }}<em>.</em></h1>
   <div class="post-meta">
-    <span class="meta-label">Date</span>
-    <span class="meta-value">{{ .Date.Format "January 2, 2006" }}</span>
+    <span class="writeup-tag">{{ .Params.tag }}</span>
+    <span class="writeup-date mono">{{ .Date.Format "2006-01" }}</span>
+    <span class="writeup-date mono">{{ .ReadingTime }} min read</span>
   </div>
 </div>
 
