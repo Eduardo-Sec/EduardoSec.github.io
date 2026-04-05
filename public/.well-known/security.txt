@@ -1,0 +1,4 @@
+Contact: mailto:eabustamante1@gmail.com
+Encryption: https://ebustamante.dev/pgp
+Preferred-Languages: en
+Canonical: https://ebustamante.dev/.well-known/security.txt
