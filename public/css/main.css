@@ -384,8 +384,8 @@ nav {
 }
 
 .writeup-date {
-  font-size: 11px;
-  color: var(--text-dim);
+  font-size: 13px;
+  color: var(--text-muted);
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -846,3 +846,50 @@ footer {
   .resume-entry-right { align-items: flex-start; }
   .resume-skill-label { min-width: 120px; }
 }
+
+/* ── TAGS ── */
+.tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.tag-item:hover {
+  border-color: var(--ac);
+  background: var(--bg-hover);
+}
+
+.tag-name {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.tag-count {
+  font-size: 11px;
+  color: var(--ac);
+  background: var(--ac-bg);
+  border: 1px solid #2d1a4a;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.browse-tags {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 12px;
+  display: inline-block;
+  transition: color 0.15s ease;
+}
+
+.browse-tags:hover { color: var(--ac); }

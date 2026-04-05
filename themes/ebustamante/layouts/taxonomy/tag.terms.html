@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">// tags</div>
+  <h1>Tags<em>.</em></h1>
+  <p class="hero-sub">Browse writeups by topic.</p>
+</div>
+
+<section class="site-section">
+  <div class="tags-grid">
+    {{ range .Data.Terms.Alphabetical }}
+    <a href="{{ .Page.Permalink }}" class="tag-item">
+      <span class="tag-name mono">{{ .Page.Title }}</span>
+      <span class="tag-count mono">{{ .Count }}</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

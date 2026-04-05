@@ -4,8 +4,10 @@
   <div class="hero-tag mono">// {{ .Params.tag }}</div>
   <h1>{{ .Title }}<em>.</em></h1>
   <div class="post-meta">
-    <span class="writeup-tag">{{ .Params.tag }}</span>
-    <span class="writeup-date mono">{{ .Date.Format "2006-01" }}</span>
+    {{ range .Params.tags }}
+    <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="writeup-tag">{{ . }}</a>
+    {{ end }}
+    <span class="writeup-date mono">{{ .Date.Format "01-02-2006" }}</span>
     <span class="writeup-date mono">{{ .ReadingTime }} min read</span>
   </div>
 </div>

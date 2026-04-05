@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><?xml-stylesheet type="text/xsl" href="/feed.xsl" media="all"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</title>
-    <link>http://localhost:1313/</link>
+    <title>Project on Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</title>
+    <link>http://localhost:1313/tags/project/</link>
     <description>Recent content on Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 03 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/project/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Building my portfolio site with Hugo and GitHub Pages</title>

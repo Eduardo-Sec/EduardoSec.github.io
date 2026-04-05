@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expanding the portfolio site, security, features, and dev workflow · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</title>
+  <meta name="description" content="Cybersecurity student at UNOmaha. SOC Analyst Intern focused on Detection Engineering. Exploring ARM malware analysis, and other blue team topics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Expanding the portfolio site, security, features, and dev workflow · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
+  <meta property="og:description" content="Cybersecurity student at UNOmaha. SOC Analyst Intern focused on Detection Engineering. Exploring ARM malware analysis, and other blue team topics.">
+  <meta property="og:url" content="http://localhost:1313/writeups/portfolio-site-part-2/">
+  <meta property="og:site_name" content="Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Expanding the portfolio site, security, features, and dev workflow · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
+  <meta name="twitter:description" content="Cybersecurity student at UNOmaha. SOC Analyst Intern focused on Detection Engineering. Exploring ARM malware analysis, and other blue team topics.">
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst" href="/index.xml">
+</head>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', function() {
+      links.classList.toggle('open');
+    });
+  });
+</script>
+<body>
+  <nav>
+  <a href="/" class="nav-logo mono">eb<span>.</span>dev</a>
+  <div class="nav-links">
+    <a href="/about">about</a>
+    <a href="/writeups">writeups</a>
+    <a href="/projects">projects</a>
+    <a href="/resume">resume</a>
+    <a href="/contact">contact</a>
+    <a href="/pgp">pgp</a>
+    <a href="/index.xml">rss</a>
+  </div>
+  <button class="nav-toggle" aria-label="toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+  <main>
+    
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">// </div>
+  <h1>Expanding the portfolio site, security, features, and dev workflow<em>.</em></h1>
+  <div class="post-meta">
+    
+    <a href="/tags/project" class="writeup-tag">project</a>
+    
+    <span class="writeup-date mono">04-05-2026</span>
+    <span class="writeup-date mono">6 min read</span>
+  </div>
+</div>
+
+<section class="site-section">
+  <div class="post-content">
+    <p>After the first writeup I had a working site with a GitHub Actions workflow, branch protection, and a PR based deployment process. That was a solid foundation but there was a lot left to build out. This covers everything I added after that, the security improvements, new pages, and the smaller details that make the site feel more complete.</p>
+<p>&ndash;</p>
+<h2 id="gpg-key-and-commit-signing">GPG key and commit signing</h2>
+<p>The first thing I tackled was setting up a GPG key for commit signing. Every commit I push to GitHub now shows a green Verified badge, which is a small but meaningful signal for a security professional. It means the commits are cryptographically tied to my key and anyone can verify they actually came from me.</p>
+<p>Setting it up on Windows involved installing Gpg4win, generating a 4096 bit RSA key with a two year expiration, and configuring Git to sign every commit automatically. The key generation command is straightforward:</p>
+<pre tabindex="0"><code>gpg --full-generate-key
+</code></pre><p>After generating the key I exported the public key and added it to GitHub under Settings, SSH and GPG keys. Then I configured Git:</p>
+<pre tabindex="0"><code>git config --global user.signingkey C40C15BD0B031356
+git config --global commit.gpgsign true
+git config --global gpg.program &#34;C:\Program Files\GnuPG\bin\gpg.exe&#34;
+</code></pre><p>One thing worth noting is that GPG prompts for your passphrase on the first commit of each session, then caches it for a while. So it is not as disruptive as it sounds in practice.</p>
+<hr>
+<h2 id="pgp-page">PGP page</h2>
+<p>Since I had a GPG key I added a PGP page to the site at <code>/pgp</code>. It shows my key ID, fingerprint, instructions for fetching the key from a keyserver, and the full public key block for manual import. Anyone who wants to send me an encrypted message can use it.</p>
+<p>The key ID is <code>C40C15BD0B031356</code> and the fingerprint is <code>25F2 D400 EBA7 D3E9 0861 1CEA C40C 15BD 0B03 1356</code>. I also added PGP to the nav so it is easy to find.</p>
+<hr>
+<h2 id="mobile-hamburger-nav">Mobile hamburger nav</h2>
+<p>The nav was getting cramped on mobile with all the links in a row. I added a hamburger menu that collapses the links on smaller screens. On desktop it stays exactly the same. The implementation is straightforward, a button in the nav HTML, some CSS to hide and show the links, and a small JavaScript toggle:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">document</span>.addEventListener(<span style="color:#f1fa8c">&#39;DOMContentLoaded&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> toggle <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.querySelector(<span style="color:#f1fa8c">&#39;.nav-toggle&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> links <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.querySelector(<span style="color:#f1fa8c">&#39;.nav-links&#39;</span>);
+</span></span><span style="display:flex;"><span>  toggle.addEventListener(<span style="color:#f1fa8c">&#39;click&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>    links.classList.toggle(<span style="color:#f1fa8c">&#39;open&#39;</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><hr>
+<h2 id="search-on-the-writeups-page">Search on the writeups page</h2>
+<p>I added Fuse.js powered search to the writeups page. Hugo generates a JSON index of all content at <code>/index.json</code> which Fuse.js loads and searches client side. The search input filters the writeups list in real time as you type, with a fallback message if nothing matches.</p>
+<p>To enable the JSON output I added this to <code>hugo.toml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[outputs]
+</span></span><span style="display:flex;"><span>  home = [<span style="color:#f1fa8c">&#34;HTML&#34;</span>, <span style="color:#f1fa8c">&#34;RSS&#34;</span>, <span style="color:#f1fa8c">&#34;JSON&#34;</span>]
+</span></span></code></pre></div><p>The search field fits the site&rsquo;s monospace aesthetic and focuses with a purple glow that matches the accent color. No external dependencies beyond Fuse.js loaded from a CDN.</p>
+<hr>
+<h2 id="resume-page">Resume page</h2>
+<p>I built a styled resume page at <code>/resume</code> that matches the site&rsquo;s dark theme rather than just uploading a PDF. The page has a download PDF button at the top for anyone who needs the traditional format, but the primary experience is the styled HTML version.</p>
+<p>The resume covers my SOC Analyst Intern role at UNO&rsquo;s MATRIX Project, my education at UNO and UNL, and a skills section that matches the tools grid on the homepage. Phone number is left off since it is a public page.</p>
+<hr>
+<h2 id="custom-404-page">Custom 404 page</h2>
+<p>The default GitHub Pages 404 is generic and white. I created a custom one at <code>themes/ebustamante/layouts/404.html</code> that matches the site&rsquo;s design with a <code>// error</code> tag, a styled 404 heading, and two buttons for going home or contacting me. GitHub Pages automatically serves <code>404.html</code> for any missing URL.</p>
+<hr>
+<h2 id="securitytxt">security.txt</h2>
+<p>I added a <code>security.txt</code> file at <code>/.well-known/security.txt</code>. It is a standard file that tells security researchers how to contact you if they find a vulnerability on your site. The file points to my email and my PGP page for encrypted disclosure. Worth noting that GitHub Pages does not serve the <code>.well-known</code> directory correctly due to server level restrictions, so this one will have to wait until I migrate to self hosted Nginx on the P3. It works correctly in local development though.</p>
+<hr>
+<h2 id="rss-feed-with-xsl-stylesheet">RSS feed with XSL stylesheet</h2>
+<p>Hugo generates an RSS feed automatically but the raw XML view in the browser is ugly and confusing. I created an XSL stylesheet that renders the feed as a styled HTML page matching the rest of the site. The feed is filtered to only include writeups, not static pages like About or Contact.</p>
+<p>The stylesheet lives at <code>static/feed.xsl</code> and the RSS template at <code>layouts/_default/rss.xml</code> references it with an <code>&lt;?xml-stylesheet?&gt;</code> processing instruction. The rendered page has the same dark background, purple accents, and monospace typography as the rest of the site, along with a brief explanation of what RSS is and how to use it.</p>
+<hr>
+<h2 id="open-graph-meta-tags">Open Graph meta tags</h2>
+<p>I added Open Graph and Twitter Card meta tags to the base template so the site previews correctly when shared on LinkedIn, Discord, or anywhere else. The tags are dynamic, pulling the page title and description for individual pages and falling back to the site description for the homepage.</p>
+<p>I also updated the site title in <code>hugo.toml</code> to be more descriptive for SEO purposes, going from just my name to &ldquo;Eduardo Bustamante, Cybersecurity Student and SOC Analyst&rdquo; which hits the recommended 50 to 60 character range.</p>
+<hr>
+<h2 id="reading-time-on-writeups">Reading time on writeups</h2>
+<p>Hugo has a built in <code>.ReadingTime</code> variable that calculates estimated reading time based on word count. I added it to the writeup single template alongside the date and tag. Small detail but it makes the posts feel more like proper articles.</p>
+<hr>
+<h2 id="tags-and-categories">Tags and categories</h2>
+<p>I set up a full tags taxonomy so writeups can be categorized and filtered. The tags I am using are detection, malware, ctf, forensics, project, tooling, and notes. Each tag has its own page listing all writeups with that tag, and there is a tags index at <code>/tags/</code> showing all tags with post counts.</p>
+<p>Clicking a tag on a writeup takes you to that tag&rsquo;s page. There is also a &ldquo;browse by tag&rdquo; link on the writeups list page for discoverability. The tag system uses Hugo&rsquo;s built in taxonomy support with a custom layout for both the individual tag pages and the terms index.</p>
+<hr>
+<h2 id="takeaways">Takeaways</h2>
+<p>Most of these features took under an hour each to implement. The ones that took longer were the RSS stylesheet, which involved learning enough XSL to get the browser rendering correctly, and the tags system, which required understanding Hugo&rsquo;s taxonomy lookup order. Everything else was pretty straightforward once I knew what I was building.</p>
+<p>The site is at a good place now. The main thing missing is more writeups, which is what I will be focusing on next. The infrastructure is solid enough that adding content is the highest leverage thing I can do at this point.</p>
+
+  </div>
+</section>
+
+  </main>
+  <footer>
+  <div class="status-bar">
+    <div class="status-left">
+      <div class="status-dot"></div>
+      <span class="status-text mono">ebustamante.dev</span>
+    </div>
+    <div class="status-right mono">UNO · Omaha, NE</div>
+  </div>
+</footer>
+</body>
+</html>
