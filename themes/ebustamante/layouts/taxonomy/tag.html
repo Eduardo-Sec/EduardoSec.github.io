@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">// {{ .Title | lower }}</div>
+  <h1>{{ .Title }}<em>.</em></h1>
+  <p class="hero-sub">{{ len .Pages }} writeup{{ if ne (len .Pages) 1 }}s{{ end }} tagged with this.</p>
+</div>
+
+<section class="site-section">
+  <div class="writeups">
+    {{ range .Pages }}
+    <a href="{{ .Permalink }}" class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot"></div>
+        <span class="writeup-title">{{ .Title }}</span>
+      </div>
+      <div class="writeup-right">
+        <span class="writeup-date mono">{{ .Date.Format "2006-01" }}</span>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

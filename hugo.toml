@@ -16,3 +16,8 @@ theme = "ebustamante"
       unsafe = true
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[taxonomies]
+  tag = "tags"
