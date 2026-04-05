@@ -1,6 +1,6 @@
 baseURL = "https://ebustamante.dev/"
 languageCode = "en-us"
-title = "Eduardo Bustamante | Cybersecurity student & SOC Analyst"
+title = "Eduardo Bustamante | Cybersecurity Student & SOC Analyst"
 theme = "ebustamante"
 
 [params]
