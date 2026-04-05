@@ -14,9 +14,17 @@
             color: #d0d0d0;
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            padding: 48px;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+          }
+          .content {
             max-width: 860px;
             margin: 0 auto;
+            padding: 48px;
+            flex: 1;
           }
           .feed-tag {
             font-family: monospace;
@@ -46,35 +54,30 @@
             font-size: 13px;
             color: #888;
           }
-          .subscribe code {
+          .subscribe-title {
+            font-family: monospace;
+            font-size: 11px;
+            color: #a855f7;
+            margin-bottom: 8px;
+            letter-spacing: 0.06em;
+          }
+          .subscribe p {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 12px;
+            line-height: 1.7;
+          }
+          .subscribe-url {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-top: 4px;
+          }
+          .subscribe-url code {
             font-family: monospace;
             color: #a855f7;
             font-size: 12px;
-          }
-          .subscribe-title {
-          font-family: monospace;
-          font-size: 11px;
-          color: #a855f7;
-          margin-bottom: 8px;
-          letter-spacing: 0.06em;
-          }
-          .subscribe p {
-          font-size: 13px;
-          color: #888;
-          margin-bottom: 12px;
-          line-height: 1.7;
-          }
-          .subscribe-url {
-          background: #111;
-          border: 1px solid #222;
-          border-radius: 6px;
-          padding: 10px 14px;
-          margin-top: 4px;
-          }
-          .subscribe-url code {
-          font-family: monospace;
-          color: #a855f7;
-          font-size: 12px;
           }
           .feed-header {
             margin-bottom: 32px;
@@ -108,40 +111,83 @@
             color: #555;
           }
           .back {
-          display: inline-block;
-          font-family: monospace;
-          font-size: 12px;
-          color: #555;
-          text-decoration: none;
-          margin-bottom: 20px;
-          transition: color 0.15s ease;
+            display: inline-block;
+            font-family: monospace;
+            font-size: 12px;
+            color: #888;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: color 0.15s ease;
           }
           .back:hover { color: #a855f7; }
-          
+          footer {
+            border-top: 1px solid #141414;
+            width: 100%;
+          }
+          .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 48px;
+            background: #060606;
+          }
+          .status-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+          .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            display: inline-block;
+          }
+          .status-text {
+            font-family: monospace;
+            font-size: 12px;
+            color: #888;
+          }
+          .status-right {
+            font-family: monospace;
+            font-size: 12px;
+            color: #888;
+          }
         </style>
       </head>
       <body>
-        <div class="feed-header">
-          <a href="/" class="back">← ebustamante.dev</a>
-          <div class="feed-tag">// rss feed</div>
-          <h1><xsl:value-of select="/rss/channel/title"/><em>.</em></h1>
-          <p class="feed-desc"><xsl:value-of select="/rss/channel/description"/></p>
-        </div>
-        <div class="subscribe">
-          <p class="subscribe-title">What is this?</p>
-          <p>This is an RSS feed. Subscribe by copying the URL below into any RSS reader like Feedly, NewsBlur, or NetNewsWire and you will get notified when new writeups are published.</p>
-          <div class="subscribe-url">
-            <code>https://ebustamante.dev/index.xml</code>
+        <div class="content">
+          <div class="feed-header">
+            <a href="/" class="back">← ebustamante.dev</a>
+            <div class="feed-tag">// rss feed</div>
+            <h1><xsl:value-of select="/rss/channel/title"/><em>.</em></h1>
+            <p class="feed-desc"><xsl:value-of select="/rss/channel/description"/></p>
+          </div>
+          <div class="subscribe">
+            <p class="subscribe-title">What is this?</p>
+            <p>This is an RSS feed. Subscribe by copying the URL below into any RSS reader like Feedly, NewsBlur, or NetNewsWire and you will get notified when new writeups are published.</p>
+            <div class="subscribe-url">
+              <code>https://ebustamante.dev/index.xml</code>
+            </div>
+          </div>
+          <div class="items">
+            <xsl:for-each select="/rss/channel/item">
+              <div class="item">
+                <a href="{link}"><xsl:value-of select="title"/></a>
+                <span class="item-date"><xsl:value-of select="substring(pubDate, 1, 16)"/></span>
+              </div>
+            </xsl:for-each>
           </div>
         </div>
-        <div class="items">
-          <xsl:for-each select="/rss/channel/item">
-            <div class="item">
-              <a href="{link}"><xsl:value-of select="title"/></a>
-              <span class="item-date"><xsl:value-of select="substring(pubDate, 1, 16)"/></span>
+        <footer>
+          <div class="status-bar">
+            <div class="status-left">
+              <span class="status-dot"></span>
+              <span class="status-text">ebustamante.dev</span>
             </div>
-          </xsl:for-each>
-        </div>
+            <div class="status-right">UNO · Omaha, NE</div>
+          </div>
+        </footer>
       </body>
     </html>
   </xsl:template>
