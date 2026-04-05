@@ -4,6 +4,7 @@
   <div class="hero-tag mono">// writeups</div>
   <h1>Writeups<em>.</em></h1>
   <p class="hero-sub">Detection engineering notes, CTF walkthroughs, and security research.</p>
+  <a href="/tags/" class="mono browse-tags">browse by tag →</a>
 </div>
 
 <section class="site-section">
@@ -26,7 +27,7 @@
       </div>
       <div class="writeup-right">
         <span class="writeup-tag">{{ .Params.tag }}</span>
-        <span class="writeup-date mono">{{ .Date.Format "2006-01" }}</span>
+        <span class="writeup-date mono">{{ .Date.Format "01-02-2006" }}</span>
       </div>
     </a>
     {{ else }}

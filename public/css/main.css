@@ -384,8 +384,8 @@ nav {
 }
 
 .writeup-date {
-  font-size: 11px;
-  color: var(--text-dim);
+  font-size: 13px;
+  color: var(--text-muted);
   font-family: 'JetBrains Mono', monospace;
 }
 
