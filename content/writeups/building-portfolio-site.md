@@ -1,6 +1,6 @@
 ---
 title: "Building my portfolio site with Hugo and GitHub Pages"
-date: 2025-04-03
+date: 2026-04-03
 tag: "project"
 draft: false
 ---
