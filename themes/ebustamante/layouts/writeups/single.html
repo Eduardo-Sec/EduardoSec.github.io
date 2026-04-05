@@ -17,4 +17,27 @@
     {{ .Content }}
   </div>
 </section>
+
+{{ $related := .Site.RegularPages.Related . | first 3 }}
+{{ with $related }}
+<section class="site-section">
+  <div class="section-header">
+    <span class="section-num mono">//</span>
+    <span class="section-title">related writeups</span>
+  </div>
+  <div class="writeups">
+    {{ range . }}
+    <a href="{{ .Permalink }}" class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot"></div>
+        <span class="writeup-title">{{ .Title }}</span>
+      </div>
+      <div class="writeup-right">
+        <span class="writeup-date mono">{{ .Date.Format "01-02-2006" }}</span>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
 {{ end }}
