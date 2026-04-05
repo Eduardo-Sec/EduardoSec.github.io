@@ -35,7 +35,7 @@ Source is on GitHub if you want to look at how it is put together.
 
 ## Security+
 
-**Status: in progress, exam scheduled for summer 2025**
+**Status: in progress, exam scheduled for summer 2026**
 
 Working through the SY0-701 objectives with a focus on Domain 4 since Security Operations is the heaviest weighted section and maps most directly to the detection engineering work I do day to day. Using Professor Messer videos and Jason Dion practice exams.
 
