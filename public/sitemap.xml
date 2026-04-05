@@ -2,27 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/writeups/building-portfolio-site/</loc>
+    <loc>https://ebustamante.dev/writeups/building-portfolio-site/</loc>
     <lastmod>2025-04-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://ebustamante.dev/</loc>
     <lastmod>2025-04-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/writeups/</loc>
+    <loc>https://ebustamante.dev/writeups/</loc>
     <lastmod>2025-04-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://ebustamante.dev/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://ebustamante.dev/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>https://ebustamante.dev/contact/</loc>
   </url><url>
-    <loc>http://localhost:1313/pgp/</loc>
+    <loc>https://ebustamante.dev/pgp/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://ebustamante.dev/projects/</loc>
   </url><url>
-    <loc>http://localhost:1313/resume/</loc>
+    <loc>https://ebustamante.dev/resume/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://ebustamante.dev/tags/</loc>
   </url>
 </urlset>
