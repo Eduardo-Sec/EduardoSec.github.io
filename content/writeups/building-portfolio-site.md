@@ -96,7 +96,7 @@ I also switched to a pull request based workflow rather than pushing directly to
 
 The final stack is Hugo generating a fully static site, GitHub Actions building and deploying on every push to master, GitHub Pages serving the output, and Cloudflare's DNS pointing `ebustamante.dev` at GitHub's servers. No server side code, no database, no CMS login panel.
 
-When the Bosgame P3 Lite home lab is set up the plan is to migrate to self hosting on an Ubuntu VM with Nginx and a Cloudflare tunnel for public access. The tunnel means my home IP is never exposed, Cloudflare proxies all traffic through their network. The domain stays the same and only the destination changes.
+When my new mini PC home lab is set up the plan is to migrate to self hosting on Ubuntu with Nginx and a Cloudflare tunnel for public access. The tunnel means my home IP is never exposed, Cloudflare proxies all traffic through their network. The domain stays the same and only the destination changes.
 
 ---
 ## Takeaways
