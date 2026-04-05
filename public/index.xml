@@ -15,6 +15,7 @@
       <pubDate>Sun, 05 Apr 2026 00:00:00 &#43;0000</pubDate>
       <guid>http://localhost:1313/writeups/portfolio-site-part-2/</guid>
       <description>&lt;p&gt;After the first writeup I had a working site with a GitHub Actions workflow, branch protection, and a PR based deployment process. That was a solid foundation but there was a lot left to build out. This covers everything I added after that, the security improvements, new pages, and the smaller details that make the site feel more complete.&lt;/p&gt;
+&lt;hr&gt;
 &lt;h2 id=&#34;gpg-key-and-commit-signing&#34;&gt;GPG key and commit signing&lt;/h2&gt;
 &lt;p&gt;The first thing I tackled was setting up a GPG key for commit signing. Every commit I push to GitHub now shows a green Verified badge, which is a small but meaningful signal for a security professional. It means the commits are cryptographically tied to my key and anyone can verify they actually came from me.&lt;/p&gt;</description>
     </item>
