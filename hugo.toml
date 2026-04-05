@@ -1,10 +1,10 @@
 baseURL = "https://ebustamante.dev/"
 languageCode = "en-us"
-title = "Eduardo Bustamante"
+title = "Eduardo Bustamante | Cybersecurity student & SOC Analyst"
 theme = "ebustamante"
 
 [params]
-  description = "Cybersecurity student at UNOmaha. SOC Analyst Intern and Detection Engineering, ARM malware analysis, blue team."
+  description = "Cybersecurity student at UNOmaha. SOC Analyst Intern focused on Detection Engineering. Exploring ARM malware analysis, and other blue team topics."
   status = "UNO · Omaha, NE"
 
 [markup]
