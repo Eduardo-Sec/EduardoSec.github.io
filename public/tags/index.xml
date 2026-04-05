@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><?xml-stylesheet type="text/xsl" href="/feed.xsl" media="all"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+<<<<<<< HEAD
     <title>Tags on Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</title>
     <link>http://localhost:1313/tags/</link>
     <description>Recent content on Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</description>
+=======
+    <title>Tags on Eduardo Bustamante | Cybersecurity student &amp; SOC Analyst</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content on Eduardo Bustamante | Cybersecurity student &amp; SOC Analyst</description>
+>>>>>>> 8fa8db7e9a7fb3a440dc70d10c9bfb1169fffd61
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 03 Apr 2026 00:00:00 +0000</lastBuildDate>
@@ -12,7 +18,11 @@
     <item>
       <title>Building my portfolio site with Hugo and GitHub Pages</title>
       <link>http://localhost:1313/writeups/building-portfolio-site/</link>
+<<<<<<< HEAD
       <pubDate>Fri, 03 Apr 2026 00:00:00 &#43;0000</pubDate>
+=======
+      <pubDate>Thu, 03 Apr 2025 00:00:00 &#43;0000</pubDate>
+>>>>>>> 8fa8db7e9a7fb3a440dc70d10c9bfb1169fffd61
       <guid>http://localhost:1313/writeups/building-portfolio-site/</guid>
       <description>&lt;p&gt;I wanted a portfolio site that actually looked like something I built rather than something I dragged and dropped together. Most security portfolio sites look identical, a template with a headshot, a skills progress bar, and a contact form. I wanted something cleaner and more intentional, so I built mine from scratch using Hugo and deployed it on GitHub Pages with a custom domain.&lt;/p&gt;
 &lt;p&gt;This writeup covers how I built it, the problems I ran into, and the security decisions I made along the way.&lt;/p&gt;</description>
