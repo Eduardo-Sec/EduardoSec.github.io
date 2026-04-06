@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
-  
+
   <!-- Open Graph -->
   <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
   <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}">
@@ -20,24 +20,42 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}">
   <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-  
+
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="/index.xml">
 </head>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const toggle = document.querySelector('.nav-toggle');
-    const links = document.querySelector('.nav-links');
-    toggle.addEventListener('click', function() {
-      links.classList.toggle('open');
-    });
-  });
-</script>
 <body>
   {{ partial "nav.html" . }}
   <main>
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.querySelector('.nav-toggle');
+      const links = document.querySelector('.nav-links');
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          links.classList.toggle('open');
+        });
+      }
+
+      document.querySelectorAll('.post-content pre').forEach(function(pre) {
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn mono';
+        btn.textContent = 'copy';
+        pre.style.position = 'relative';
+        pre.appendChild(btn);
+        btn.addEventListener('click', function() {
+          const code = pre.querySelector('code');
+          navigator.clipboard.writeText(code ? code.innerText : pre.innerText).then(function() {
+            btn.textContent = 'copied';
+            setTimeout(function() { btn.textContent = 'copy'; }, 2000);
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html>
