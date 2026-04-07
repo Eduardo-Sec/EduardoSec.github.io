@@ -21,12 +21,12 @@ projects:
     status_type: warn
     tags: [hugo, github-pages, css]
     desc: This site. Custom Hugo theme from scratch, deployed on GitHub Pages. Planning migration to self-hosted Proxmox with Cloudflare tunnel once the lab is up.
-    url: https://github.com/yourusername/ebustamante.dev
+    url: https://github.com/Eduardo-Sec/EduardoSec.github.io
 
   - title: Security+
     status: exam scheduled summer 2026
     status_type: info
-    tags: [sy0-701, certifications, blue-team]
+    tags: [SY0-701, certifications, blue team]
     desc: Working through SY0-701 with focus on Domain 4. After Security+, CySA+ is next since it maps directly to detection engineering work.
 ---
 

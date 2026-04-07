@@ -1,21 +1,8 @@
 ---
 title: "PGP"
 draft: false
+layout: pgp
 ---
-
-If you want to reach me securely you can encrypt your message using my public key below.
-
-**Key ID:** `C40C15BD0B031356`
-
-**Fingerprint:** `25F2 D400 EBA7 D3E9 0861 1CEA C40C 15BD 0B03 1356`
-
-To get my key directly from a keyserver run:
-
-```
-gpg --recv-keys C40C15BD0B031356
-```
-
-Or import it manually by copying the block below:
 
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
