@@ -109,8 +109,8 @@
 <p>Running <code>winget install Hugo.Hugo.Extended</code> would just load forever without completing. When I tried the Scoop method with <code>irm get.scoop.sh | iex</code> it appeared to do nothing. Neither package manager was working reliably.</p>
 <p>The fix was simpler than expected. I downloaded the Hugo extended binary directly from the GitHub releases page, created a <code>C:\Hugo\bin</code> folder, moved <code>hugo.exe</code> into it, and added that folder to my system PATH through the Windows environment variables GUI rather than through PowerShell. The GUI approach bypassed whatever was causing the PowerShell commands to freeze. After reopening a fresh terminal Hugo was working.</p>
 <p>A version check confirmed it:</p>
-<pre tabindex="0"><code>hugo v0.159.2+extended windows/amd64
-</code></pre><hr>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo v0.159.2+extended windows/amd64
+</span></span></code></pre></div><hr>
 <h2 id="building-the-theme">Building the theme</h2>
 <p>I structured the Hugo project with a fully custom theme folder rather than pulling in someone else&rsquo;s layout. The key files are a base template that every page inherits from, partials for the nav and footer that get included automatically, and separate layout files for the homepage, writeups list, individual writeup posts, and inner pages like about and projects.</p>
 <p>One problem that cost me time was CSS changes not showing up in the browser even after saving the file. Hard refreshing with Ctrl+Shift+R did nothing. Opening DevTools and checking the Sources tab showed the CSS file was not even being served, Hugo was not picking it up from the theme&rsquo;s static folder.</p>
@@ -127,17 +127,17 @@
 <p>This is not theoretical. In March 2025 the <code>tj-actions/changed-files</code> action was compromised exactly this way, more than 350 tags were updated to point at a commit that dumped runner secrets, affecting over 23,000 repositories.</p>
 <p>I updated the workflow to pin the first party GitHub actions to their full commit SHA hashes. Third party composite actions like <code>peaceiris/actions-hugo</code> cannot be pinned by hash due to how GitHub resolves composite actions, so those stay on version tags which is an acceptable tradeoff.</p>
 <p>I also set up Dependabot to monitor the workflow file weekly and open pull requests when newer versions of pinned actions are available. The configuration is straightforward:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">version</span>: <span style="color:#bd93f9">2</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">updates</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ff79c6">package-ecosystem</span>: <span style="color:#f1fa8c">&#34;github-actions&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">directory</span>: <span style="color:#f1fa8c">&#34;/&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">schedule</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">interval</span>: <span style="color:#f1fa8c">&#34;weekly&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">commit-message</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">prefix</span>: <span style="color:#f1fa8c">&#34;chore&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">version</span><span class="p">:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="n">updates</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span> <span class="n">package</span><span class="o">-</span><span class="n">ecosystem</span><span class="p">:</span> <span class="s2">&#34;github-actions&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">directory</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">schedule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">interval</span><span class="p">:</span> <span class="s2">&#34;weekly&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">commit</span><span class="o">-</span><span class="n">message</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">prefix</span><span class="p">:</span> <span class="s2">&#34;chore&#34;</span>
 </span></span></code></pre></div><p>One problem that came up with Dependabot is that when it opens a pull request, GitHub Actions runs the workflow on that PR branch. The deploy job was failing because PR branches are not allowed to deploy to the github-pages environment, only the master branch is. The fix was adding a condition to the deploy job to skip when the event is a pull request:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">if</span>: github.event_name != &#39;pull_request&#39;
-</span></span></code></pre></div><p>This lets the build job run on Dependabot PRs and report a green status check so the PR can be merged, but nothing actually deploys until the PR is merged into master and a real push triggers the full workflow.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">github.event_name != &#39;pull_request&#39;</span><span class="w">
+</span></span></span></code></pre></div><p>This lets the build job run on Dependabot PRs and report a green status check so the PR can be merged, but nothing actually deploys until the PR is merged into master and a real push triggers the full workflow.</p>
 <hr>
 <h2 id="branch-protection-and-environment-settings">Branch protection and environment settings</h2>
 <p>I set up a branch protection rule on master with two requirements. Status checks for both build and deploy must pass before anything can merge, which means a broken Hugo build cannot accidentally go live. Force pushes are blocked to prevent accidentally rewriting git history.</p>
