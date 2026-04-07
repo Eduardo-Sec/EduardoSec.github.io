@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">▸ {{ .Title | lower }}</div>
+  <h1>{{ .Title }}<em>.</em></h1>
+  <div class="resume-hero-actions">
+    <a href="/resume.pdf" download class="btn-primary" style="color:#ffffff;">Download PDF</a>
+    <span class="resume-hero-meta mono">last updated {{ now.Format "Jan 2006" }}</span>
+  </div>
+</div>
+
+<section class="site-section">
+  <div class="resume-page-content">
+    {{ .Content }}
+  </div>
+</section>
+{{ end }}

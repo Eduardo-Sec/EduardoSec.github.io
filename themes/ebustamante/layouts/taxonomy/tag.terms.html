@@ -1,12 +1,12 @@
 {{ define "main" }}
 <div class="page-hero">
   <a href="javascript:history.back()" class="back-btn mono">← back</a>
-  <div class="hero-tag mono">// tags</div>
+  <div class="hero-tag mono">▸ tags</div>
   <h1>Tags<em>.</em></h1>
   <p class="hero-sub">Browse writeups by topic.</p>
 </div>
 
-<section class="site-section">
+<section class="site-section fade-in">
   <div class="tags-grid">
     {{ range .Data.Terms.Alphabetical }}
     <a href="{{ .Page.Permalink }}" class="tag-item">
