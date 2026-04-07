@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resume · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</title>
@@ -13,7 +13,7 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="Resume · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
   <meta property="og:description" content="Cybersecurity student at UNOmaha. SOC Analyst Intern focused on Detection Engineering. Exploring ARM malware analysis, and other blue team topics.">
-  <meta property="og:url" content="http://localhost:1313/resume/">
+  <meta property="og:url" content="https://ebustamante.dev/resume/">
   <meta property="og:site_name" content="Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
 
   
@@ -63,14 +63,15 @@
   <a href="javascript:history.back()" class="back-btn mono">← back</a>
   <div class="hero-tag mono">▸ resume</div>
   <h1>Resume<em>.</em></h1>
+  <div class="resume-hero-actions">
+    <a href="/resume.pdf" download class="btn-primary" style="color:#ffffff;">Download PDF</a>
+    <span class="resume-hero-meta mono">last updated Apr 2026</span>
+  </div>
 </div>
 
 <section class="site-section">
-  <div class="post-content">
-    <div class="resume-actions">
-  <a href="/resume.pdf" download class="btn-primary" style="color:#ffffff;">Download PDF</a>
-</div>
-<div class="resume">
+  <div class="resume-page-content">
+    <div class="resume">
 <div class="resume-header">
   <h2 class="resume-name">Eduardo Bustamante</h2>
   <div class="resume-contact">
@@ -81,11 +82,11 @@
   </div>
 </div>
 <div class="resume-section">
-  <div class="resume-section-title mono">// summary</div>
+  <div class="resume-section-title mono">▸ summary</div>
   <p>Cybersecurity student at the University of Nebraska at Omaha pursuing a B.S. in Cybersecurity with a Computer Science minor. Currently working as a SOC Analyst Intern with hands-on exposure to security monitoring, threat identification, and incident documentation. Building toward a career in detection engineering and blue team security operations.</p>
 </div>
 <div class="resume-section">
-  <div class="resume-section-title mono">// experience</div>
+  <div class="resume-section-title mono">▸ experience</div>
   <div class="resume-entry">
     <div class="resume-entry-header">
       <div class="resume-entry-left">
@@ -153,7 +154,7 @@
   </div>
 </div>
 <div class="resume-section">
-  <div class="resume-section-title mono">// education</div>
+  <div class="resume-section-title mono">▸ education</div>
   <div class="resume-entry">
     <div class="resume-entry-header">
       <div class="resume-entry-left">
@@ -192,7 +193,7 @@
   </div>
 </div>
 <div class="resume-section">
-  <div class="resume-section-title mono">// skills</div>
+  <div class="resume-section-title mono">▸ skills</div>
   <div class="resume-skills">
     <div class="resume-skill-group">
       <span class="resume-skill-label">Detection & SIEM</span>
@@ -221,6 +222,7 @@
   </div>
 </div>
 </div>
+
   </div>
 </section>
 
@@ -237,6 +239,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+      
       const toggle = document.querySelector('.nav-toggle');
       const links = document.querySelector('.nav-links');
       if (toggle) {
@@ -245,6 +249,7 @@
         });
       }
 
+      
       document.querySelectorAll('.post-content pre').forEach(function(pre) {
         const btn = document.createElement('button');
         btn.className = 'copy-btn mono';
@@ -259,6 +264,21 @@
           });
         });
       });
+
+      
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+      });
+
     });
   </script>
 </body>

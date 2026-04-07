@@ -28,16 +28,17 @@
           }
           .feed-tag {
             font-family: monospace;
-            font-size: 12px;
+            font-size: 14px;
             color: #a855f7;
             margin-bottom: 12px;
           }
           h1 {
-            font-size: 32px;
+            font-size: 44px;
             font-weight: 600;
             color: #f4f4f4;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
             margin-bottom: 8px;
+            line-height: 1.08;
           }
           h1 em { color: #a855f7; font-style: normal; }
           .feed-desc {
@@ -49,22 +50,20 @@
             background: #0d0d0d;
             border: 1px solid #1e1e1e;
             border-radius: 8px;
-            padding: 16px 20px;
+            padding: 20px 24px;
             margin: 24px 0 32px;
-            font-size: 13px;
-            color: #888;
           }
           .subscribe-title {
             font-family: monospace;
-            font-size: 11px;
+            font-size: 12px;
             color: #a855f7;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             letter-spacing: 0.06em;
           }
           .subscribe p {
             font-size: 13px;
             color: #888;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             line-height: 1.7;
           }
           .subscribe-url {
@@ -72,7 +71,6 @@
             border: 1px solid #222;
             border-radius: 6px;
             padding: 10px 14px;
-            margin-top: 4px;
           }
           .subscribe-url code {
             font-family: monospace;
@@ -159,12 +157,12 @@
         <div class="content">
           <div class="feed-header">
             <a href="/" class="back">← ebustamante.dev</a>
-            <div class="feed-tag">// rss feed</div>
+            <div class="feed-tag">▸ rss feed</div>
             <h1><xsl:value-of select="/rss/channel/title"/><em>.</em></h1>
             <p class="feed-desc"><xsl:value-of select="/rss/channel/description"/></p>
           </div>
           <div class="subscribe">
-            <p class="subscribe-title">What is this?</p>
+            <p class="subscribe-title">what is this?</p>
             <p>This is an RSS feed. Subscribe by copying the URL below into any RSS reader like Feedly, NewsBlur, or NetNewsWire and you will get notified when new writeups are published.</p>
             <div class="subscribe-url">
               <code>https://ebustamante.dev/index.xml</code>

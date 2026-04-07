@@ -1,11 +1,8 @@
 ---
 title: "Resume"
 draft: false
+layout: resume
 ---
-
-<div class="resume-actions">
-  <a href="/resume.pdf" download class="btn-primary" style="color:#ffffff;">Download PDF</a>
-</div>
 
 <div class="resume">
 
@@ -20,12 +17,12 @@ draft: false
 </div>
 
 <div class="resume-section">
-  <div class="resume-section-title mono">// summary</div>
+  <div class="resume-section-title mono">▸ summary</div>
   <p>Cybersecurity student at the University of Nebraska at Omaha pursuing a B.S. in Cybersecurity with a Computer Science minor. Currently working as a SOC Analyst Intern with hands-on exposure to security monitoring, threat identification, and incident documentation. Building toward a career in detection engineering and blue team security operations.</p>
 </div>
 
 <div class="resume-section">
-  <div class="resume-section-title mono">// experience</div>
+  <div class="resume-section-title mono">▸ experience</div>
 
   <div class="resume-entry">
     <div class="resume-entry-header">
@@ -99,7 +96,7 @@ draft: false
 </div>
 
 <div class="resume-section">
-  <div class="resume-section-title mono">// education</div>
+  <div class="resume-section-title mono">▸ education</div>
 
   <div class="resume-entry">
     <div class="resume-entry-header">
@@ -142,7 +139,7 @@ draft: false
 </div>
 
 <div class="resume-section">
-  <div class="resume-section-title mono">// skills</div>
+  <div class="resume-section-title mono">▸ skills</div>
   <div class="resume-skills">
     <div class="resume-skill-group">
       <span class="resume-skill-label">Detection & SIEM</span>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Building my portfolio site with Hugo and GitHub Pages · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</title>
@@ -13,7 +13,7 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="Building my portfolio site with Hugo and GitHub Pages · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
   <meta property="og:description" content="Cybersecurity student at UNOmaha. SOC Analyst Intern focused on Detection Engineering. Exploring ARM malware analysis, and other blue team topics.">
-  <meta property="og:url" content="http://localhost:1313/writeups/building-portfolio-site/">
+  <meta property="og:url" content="https://ebustamante.dev/writeups/building-portfolio-site/">
   <meta property="og:site_name" content="Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
 
   
@@ -61,7 +61,7 @@
     
 <div class="page-hero">
   <a href="javascript:history.back()" class="back-btn mono">← back</a>
-  <div class="hero-tag mono">// </div>
+  <div class="hero-tag mono">▸ </div>
   <h1>Building my portfolio site with Hugo and GitHub Pages<em>.</em></h1>
   <div class="post-meta">
     
@@ -72,8 +72,30 @@
   </div>
 </div>
 
-<section class="site-section">
+<section class="site-section fade-in">
   <div class="post-content">
+    
+    <div class="toc" id="toc">
+      <div class="toc-header" id="toc-trigger">
+        <span class="toc-label mono">▸ table of contents</span>
+        <span class="toc-toggle mono" id="toc-arrow">+</span>
+      </div>
+      <div class="toc-body" id="toc-body">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#choosing-the-stack">Choosing the stack</a></li>
+    <li><a href="#getting-hugo-running">Getting Hugo running</a></li>
+    <li><a href="#building-the-theme">Building the theme</a></li>
+    <li><a href="#deploying-to-github-pages">Deploying to GitHub Pages</a></li>
+    <li><a href="#securing-the-workflow">Securing the workflow</a></li>
+    <li><a href="#branch-protection-and-environment-settings">Branch protection and environment settings</a></li>
+    <li><a href="#what-the-site-runs-on">What the site runs on</a></li>
+    <li><a href="#takeaways">Takeaways</a></li>
+  </ul>
+</nav>
+      </div>
+    </div>
+    
     <p>I wanted a portfolio site that actually looked like something I built rather than something I dragged and dropped together. Most security portfolio sites look identical, a template with a headshot, a skills progress bar, and a contact form. I wanted something cleaner and more intentional, so I built mine from scratch using Hugo and deployed it on GitHub Pages with a custom domain.</p>
 <p>This writeup covers how I built it, the problems I ran into, and the security decisions I made along the way.</p>
 <hr>
@@ -135,6 +157,19 @@
 
 
 
+<script>
+  const tocTrigger = document.getElementById('toc-trigger');
+  const tocBody = document.getElementById('toc-body');
+  const tocArrow = document.getElementById('toc-arrow');
+  if (tocTrigger) {
+    tocTrigger.addEventListener('click', function() {
+      const isOpen = tocBody.style.display === 'block';
+      tocBody.style.display = isOpen ? 'none' : 'block';
+      tocArrow.textContent = isOpen ? '+' : '−';
+    });
+  }
+</script>
+
   </main>
   <footer>
   <div class="status-bar">
@@ -148,6 +183,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+      
       const toggle = document.querySelector('.nav-toggle');
       const links = document.querySelector('.nav-links');
       if (toggle) {
@@ -156,6 +193,7 @@
         });
       }
 
+      
       document.querySelectorAll('.post-content pre').forEach(function(pre) {
         const btn = document.createElement('button');
         btn.className = 'copy-btn mono';
@@ -170,6 +208,21 @@
           });
         });
       });
+
+      
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+      });
+
     });
   </script>
 </body>
