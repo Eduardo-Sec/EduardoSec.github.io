@@ -1,6 +1,7 @@
 ---
 title: "Contact"
 draft: false
+layout: contact
 ---
 
 The best way to reach me is email. I check it regularly and will get back to you.
