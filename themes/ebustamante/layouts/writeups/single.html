@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="page-hero">
   <a href="javascript:history.back()" class="back-btn mono">← back</a>
-  <div class="hero-tag mono">// {{ .Params.tag }}</div>
+  <div class="hero-tag mono">▸ {{ .Params.tag }}</div>
   <h1>{{ .Title }}<em>.</em></h1>
   <div class="post-meta">
     {{ range .Params.tags }}
@@ -12,17 +12,28 @@
   </div>
 </div>
 
-<section class="site-section">
+<section class="site-section fade-in">
   <div class="post-content">
+    {{ if .TableOfContents }}
+    <div class="toc" id="toc">
+      <div class="toc-header" id="toc-trigger">
+        <span class="toc-label mono">▸ table of contents</span>
+        <span class="toc-toggle mono" id="toc-arrow">+</span>
+      </div>
+      <div class="toc-body" id="toc-body">
+        {{ .TableOfContents }}
+      </div>
+    </div>
+    {{ end }}
     {{ .Content }}
   </div>
 </section>
 
 {{ $related := .Site.RegularPages.Related . | first 3 }}
 {{ with $related }}
-<section class="site-section">
+<section class="site-section fade-in">
   <div class="section-header">
-    <span class="section-num mono">//</span>
+    <span class="section-num mono">▸</span>
     <span class="section-title">related writeups</span>
   </div>
   <div class="writeups">
@@ -40,4 +51,17 @@
   </div>
 </section>
 {{ end }}
+
+<script>
+  const tocTrigger = document.getElementById('toc-trigger');
+  const tocBody = document.getElementById('toc-body');
+  const tocArrow = document.getElementById('toc-arrow');
+  if (tocTrigger) {
+    tocTrigger.addEventListener('click', function() {
+      const isOpen = tocBody.style.display === 'block';
+      tocBody.style.display = isOpen ? 'none' : 'block';
+      tocArrow.textContent = isOpen ? '+' : '−';
+    });
+  }
+</script>
 {{ end }}

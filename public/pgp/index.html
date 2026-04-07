@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PGP · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</title>
@@ -13,7 +13,7 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="PGP · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
   <meta property="og:description" content="Cybersecurity student at UNOmaha. SOC Analyst Intern focused on Detection Engineering. Exploring ARM malware analysis, and other blue team topics.">
-  <meta property="og:url" content="http://localhost:1313/pgp/">
+  <meta property="og:url" content="https://ebustamante.dev/pgp/">
   <meta property="og:site_name" content="Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
 
   
@@ -63,17 +63,39 @@
   <a href="javascript:history.back()" class="back-btn mono">← back</a>
   <div class="hero-tag mono">▸ pgp</div>
   <h1>PGP<em>.</em></h1>
+  <p class="hero-sub">Encrypt messages or verify my identity using my public key.</p>
 </div>
 
 <section class="site-section">
-  <div class="post-content">
-    <p>If you want to reach me securely you can encrypt your message using my public key below.</p>
-<p><strong>Key ID:</strong> <code>C40C15BD0B031356</code></p>
-<p><strong>Fingerprint:</strong> <code>25F2 D400 EBA7 D3E9 0861 1CEA C40C 15BD 0B03 1356</code></p>
-<p>To get my key directly from a keyserver run:</p>
-<pre tabindex="0"><code>gpg --recv-keys C40C15BD0B031356
-</code></pre><p>Or import it manually by copying the block below:</p>
-<pre tabindex="0"><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+  <div class="pgp-layout">
+
+    <div class="pgp-meta">
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">key id</div>
+        <div class="sidebar-value mono">C40C15BD0B031356</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">fingerprint</div>
+        <div class="sidebar-value mono pgp-fingerprint">25F2 D400 EBA7 D3E9 0861 1CEA C40C 15BD 0B03 1356</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">algorithm</div>
+        <div class="sidebar-value">RSA 4096</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">expires</div>
+        <div class="sidebar-value">3 years from issue</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">keyserver command</div>
+        <div class="pgp-command mono">gpg --recv-keys C40C15BD0B031356</div>
+      </div>
+    </div>
+
+    <div class="pgp-key-block">
+      <div class="sidebar-label mono" style="margin-bottom:12px;">public key</div>
+      <div class="post-content">
+        <pre tabindex="0"><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGnQWe8BEAC6JQYaki+1H+Stxl59mbDSHeBVsHdTPYMrV4Z4039jpXN6gxkP
 tstqSLZEDKjUnwwHCnnPojzFiB60G5BG18G6cae46rWtFSonyxrNNzXYtqklCMZm
@@ -127,6 +149,9 @@ yNY+SaR9/l6umnnUPzgBuO0Qy0XqXK1ugtcM2a4XvQ==
 =x+gE
 -----END PGP PUBLIC KEY BLOCK-----
 </code></pre>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -143,6 +168,8 @@ yNY+SaR9/l6umnnUPzgBuO0Qy0XqXK1ugtcM2a4XvQ==
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+      
       const toggle = document.querySelector('.nav-toggle');
       const links = document.querySelector('.nav-links');
       if (toggle) {
@@ -151,6 +178,7 @@ yNY+SaR9/l6umnnUPzgBuO0Qy0XqXK1ugtcM2a4XvQ==
         });
       }
 
+      
       document.querySelectorAll('.post-content pre').forEach(function(pre) {
         const btn = document.createElement('button');
         btn.className = 'copy-btn mono';
@@ -165,6 +193,21 @@ yNY+SaR9/l6umnnUPzgBuO0Qy0XqXK1ugtcM2a4XvQ==
           });
         });
       });
+
+      
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+      });
+
     });
   </script>
 </body>

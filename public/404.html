@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 Page not found · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</title>
@@ -13,7 +13,7 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="404 Page not found · Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
   <meta property="og:description" content="Cybersecurity student at UNOmaha. SOC Analyst Intern focused on Detection Engineering. Exploring ARM malware analysis, and other blue team topics.">
-  <meta property="og:url" content="http://localhost:1313/404.html">
+  <meta property="og:url" content="https://ebustamante.dev/404.html">
   <meta property="og:site_name" content="Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst">
 
   
@@ -82,6 +82,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+      
       const toggle = document.querySelector('.nav-toggle');
       const links = document.querySelector('.nav-links');
       if (toggle) {
@@ -90,6 +92,7 @@
         });
       }
 
+      
       document.querySelectorAll('.post-content pre').forEach(function(pre) {
         const btn = document.createElement('button');
         btn.className = 'copy-btn mono';
@@ -104,6 +107,21 @@
           });
         });
       });
+
+      
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+      });
+
     });
   </script>
 </body>

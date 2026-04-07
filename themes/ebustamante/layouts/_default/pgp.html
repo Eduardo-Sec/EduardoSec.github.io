@@ -1,0 +1,44 @@
+{{ define "main" }}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">▸ {{ .Title | lower }}</div>
+  <h1>{{ .Title }}<em>.</em></h1>
+  <p class="hero-sub">Encrypt messages or verify my identity using my public key.</p>
+</div>
+
+<section class="site-section">
+  <div class="pgp-layout">
+
+    <div class="pgp-meta">
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">key id</div>
+        <div class="sidebar-value mono">C40C15BD0B031356</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">fingerprint</div>
+        <div class="sidebar-value mono pgp-fingerprint">25F2 D400 EBA7 D3E9 0861 1CEA C40C 15BD 0B03 1356</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">algorithm</div>
+        <div class="sidebar-value">RSA 4096</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">expires</div>
+        <div class="sidebar-value">3 years from issue</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">keyserver command</div>
+        <div class="pgp-command mono">gpg --recv-keys C40C15BD0B031356</div>
+      </div>
+    </div>
+
+    <div class="pgp-key-block">
+      <div class="sidebar-label mono" style="margin-bottom:12px;">public key</div>
+      <div class="post-content">
+        {{ .Content }}
+      </div>
+    </div>
+
+  </div>
+</section>
+{{ end }}
