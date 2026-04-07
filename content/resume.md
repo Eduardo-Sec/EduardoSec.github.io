@@ -147,7 +147,7 @@ layout: resume
     </div>
     <div class="resume-skill-group">
       <span class="resume-skill-label">Languages</span>
-      <span class="resume-skill-value">Python, Bash, C, ARM assembly</span>
+      <span class="resume-skill-value">Python, Bash, Powershell, C, ARM assembly, HTML</span>
     </div>
     <div class="resume-skill-group">
       <span class="resume-skill-label">Tools</span>
@@ -155,7 +155,7 @@ layout: resume
     </div>
     <div class="resume-skill-group">
       <span class="resume-skill-label">Frameworks</span>
-      <span class="resume-skill-value">NIST SP 800-30, NIST CSF, CMMC</span>
+      <span class="resume-skill-value">NIST SP 800-53, NIST 800-171 (CMMC), HIPAA, PCI DSS</span>
     </div>
     <div class="resume-skill-group">
       <span class="resume-skill-label">Operating Systems</span>
