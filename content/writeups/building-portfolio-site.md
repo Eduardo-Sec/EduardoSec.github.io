@@ -30,7 +30,7 @@ The fix was simpler than expected. I downloaded the Hugo extended binary directl
 
 A version check confirmed it:
 
-```
+``` bash
 hugo v0.159.2+extended windows/amd64
 ```
 
@@ -65,7 +65,7 @@ I updated the workflow to pin the first party GitHub actions to their full commi
 
 I also set up Dependabot to monitor the workflow file weekly and open pull requests when newer versions of pinned actions are available. The configuration is straightforward:
 
-```yaml
+``` python
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -78,7 +78,7 @@ updates:
 
 One problem that came up with Dependabot is that when it opens a pull request, GitHub Actions runs the workflow on that PR branch. The deploy job was failing because PR branches are not allowed to deploy to the github-pages environment, only the master branch is. The fix was adding a condition to the deploy job to skip when the event is a pull request:
 
-```yaml
+``` yaml
 if: github.event_name != 'pull_request'
 ```
 
