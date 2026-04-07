@@ -45,11 +45,11 @@ layout: resume
   <div class="resume-entry">
     <div class="resume-entry-header">
       <div class="resume-entry-left">
-        <span class="resume-role">Landscaper</span>
+        <span class="resume-role">Landscaper (Summers)</span>
         <span class="resume-org">Vlcek Gardens</span>
       </div>
       <div class="resume-entry-right">
-        <span class="resume-date mono">2024 – 2025</span>
+        <span class="resume-date mono">Mar – Aug 2024, May – Aug 2025</span>
         <span class="resume-location">Chapman, NE</span>
       </div>
     </div>
@@ -66,7 +66,7 @@ layout: resume
         <span class="resume-org">R & S Track Maintenance Inc.</span>
       </div>
       <div class="resume-entry-right">
-        <span class="resume-date mono">2023 – 2024</span>
+        <span class="resume-date mono">Aug 2023 – Jan 2024</span>
         <span class="resume-location">Columbus, NE</span>
       </div>
     </div>
@@ -83,7 +83,7 @@ layout: resume
         <span class="resume-org">Walmart</span>
       </div>
       <div class="resume-entry-right">
-        <span class="resume-date mono">2022 – 2023</span>
+        <span class="resume-date mono">Feb 2022 – May 2023</span>
         <span class="resume-location">Grand Island, NE</span>
       </div>
     </div>
