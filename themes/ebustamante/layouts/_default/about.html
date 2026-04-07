@@ -1,0 +1,66 @@
+{{ define "main" }}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">▸ {{ .Title | lower }}</div>
+  <h1>{{ .Title }}<em>.</em></h1>
+</div>
+
+<section class="site-section">
+  <div class="about-layout">
+
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+
+    <aside class="about-sidebar">
+      {{ with .Params.role }}
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">currently</div>
+        <div class="sidebar-value">{{ . }}</div>
+        {{ with $.Params.org }}<div class="sidebar-sub">{{ . }}</div>{{ end }}
+      </div>
+      {{ end }}
+
+      {{ with .Params.degree }}
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">degree</div>
+        <div class="sidebar-value">{{ . }}</div>
+      </div>
+      {{ end }}
+
+      {{ with .Params.minor }}
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">minor</div>
+        <div class="sidebar-value">{{ . }}</div>
+      </div>
+      {{ end }}
+
+      {{ with .Params.concentrations }}
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">concentrations</div>
+        {{ range . }}
+        <div class="sidebar-value">{{ . }}</div>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      {{ with .Params.location }}
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">location</div>
+        <div class="sidebar-value">{{ . }}</div>
+      </div>
+      {{ end }}
+
+      {{ with .Params.links }}
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">links</div>
+        {{ range . }}
+        <a href="{{ .url }}" class="sidebar-link mono">{{ .label }} →</a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </aside>
+
+  </div>
+</section>
+{{ end }}

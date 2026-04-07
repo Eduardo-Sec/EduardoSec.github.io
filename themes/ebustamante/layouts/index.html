@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="hero">
   <div class="hero-left">
-    <div class="hero-tag mono">// SOC analyst · detection engineering</div>
+    <div class="hero-tag mono">⬡ SOC analyst · detection engineering</div>
     <h1>Eduardo<br>Bustamante<em>.</em></h1>
     <p class="hero-sub">Cybersecurity student at UNO and SOC Analyst Intern with the NebraskaCYBER MATRIX program. I build and tune detections, triage alerts, and analyze threats in real environments.</p>
     <div class="hero-actions">
@@ -32,39 +32,69 @@
     </div>
   </div>
   <div class="hero-right">
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title mono">eb@portfolio ~ </span>
+    <div class="soc-dashboard">
+      <div class="soc-header">
+        <div class="soc-header-left">
+          <span class="soc-dot active"></span>
+          <span class="soc-title mono">ANALYST STATUS</span>
+        </div>
+        <span class="soc-time mono" id="soc-clock">--:--:--</span>
       </div>
-      <div class="terminal-body mono">
-        <p><span class="t-prompt">$</span> whoami</p>
-        <p class="t-output">eduardo bustamante</p>
-        <br>
-        <p><span class="t-prompt">$</span> cat status.txt</p>
-        <p class="t-output">SOC Analyst Intern @ NebraskaCYBER MATRIX</p>
-        <p class="t-output">BS Cybersecurity @ UNO -- NSA CAE-CO / CAE-CD</p>
-        <p class="t-output">Fast Track MS program</p>
-        <br>
-        <p><span class="t-prompt">$</span> ls ctf/</p>
-        <p class="t-output">NCL</p>
-        <p class="t-output">NULLify HSCTF (volunteer)</p>
-        <br>
-        <p><span class="t-prompt">$</span> cat certs/in-progress.txt</p>
-        <p class="t-output">Security+ SY0-701</p>
-        <br>
-        <p><span class="t-prompt">$</span> <span class="t-cursor">_</span></p>
+      <div class="soc-body">
+        <div class="soc-stat-grid">
+          <div class="soc-stat">
+            <div class="soc-stat-value mono" data-target="{{ len (where .Site.RegularPages "Section" "writeups") }}">0</div>
+            <div class="soc-stat-label mono">writeups</div>
+          </div>
+          <div class="soc-stat">
+            <div class="soc-stat-value mono" id="soc-days">0</div>
+            <div class="soc-stat-label mono">days as analyst</div>
+          </div>
+          <div class="soc-stat">
+            <div class="soc-stat-value mono">1</div>
+            <div class="soc-stat-label mono">certs in progress</div>
+          </div>
+          <div class="soc-stat">
+            <div class="soc-stat-value mono">18</div>
+            <div class="soc-stat-label mono">tools in stack</div>
+          </div>
+        </div>
+        <div class="soc-divider"></div>
+        <div class="soc-feeds">
+          <div class="soc-feed-item">
+            <span class="soc-feed-status info mono">INFO</span>
+            <span class="soc-feed-text mono">GPG commit signing active</span>
+          </div>
+          <div class="soc-feed-item">
+            <span class="soc-feed-status active mono">ACTIVE</span>
+            <span class="soc-feed-text mono">Wazuh monitoring enabled</span>
+          </div>
+          <div class="soc-feed-item">
+            <span class="soc-feed-status warn mono">WIP</span>
+            <span class="soc-feed-text mono">ARM malware lab initializing</span>
+          </div>
+          <div class="soc-feed-item">
+            <span class="soc-feed-status info mono">STUDY</span>
+            <span class="soc-feed-text mono">SY0-701 Security+ in progress</span>
+          </div>
+          <div class="soc-feed-item">
+            <span class="soc-feed-status warn mono">WIP</span>
+            <span class="soc-feed-text mono">Proxmox P3 lab pending hardware</span>
+          </div>
+        </div>
+        <div class="soc-divider"></div>
+        <div class="soc-footer mono">
+          <span class="soc-footer-item"><span class="soc-dot active small"></span> MATRIX SOC online</span>
+          <span class="soc-footer-item">UNO · Omaha, NE</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<section class="site-section">
+<section class="site-section fade-in">
   <div class="section-header">
-    <span class="section-num mono">01</span>
-    <span class="section-title">Recent writeups</span>
+    <span class="section-num mono">▸ recent writeups</span>
   </div>
   <div class="writeups">
     {{ range first 3 (where .Site.RegularPages "Section" "writeups") }}
@@ -74,8 +104,8 @@
         <span class="writeup-title">{{ .Title }}</span>
       </div>
       <div class="writeup-right">
-        <span class="writeup-tag">{{ .Params.tag }}</span>
-        <span class="writeup-date mono">{{ .Date.Format "2006-01" }}</span>
+        <span class="writeup-tag">{{ index .Params.tags 0 }}</span>
+        <span class="writeup-date mono">{{ .Date.Format "01-02-2006" }}</span>
       </div>
     </a>
     {{ else }}
@@ -89,10 +119,9 @@
   </div>
 </section>
 
-<section class="site-section">
+<section class="site-section fade-in">
   <div class="section-header">
-    <span class="section-num mono">02</span>
-    <span class="section-title">Focus areas</span>
+    <span class="section-num mono">▸ focus areas</span>
   </div>
   <div class="cards">
     <div class="card">
@@ -116,10 +145,9 @@
   </div>
 </section>
 
-<section class="site-section">
+<section class="site-section fade-in">
   <div class="section-header">
-    <span class="section-num mono">03</span>
-    <span class="section-title">Tools & technologies</span>
+    <span class="section-num mono">▸ tools & technologies</span>
   </div>
   <div class="tools-grid">
     <div class="tool-group">
@@ -174,4 +202,48 @@
     </div>
   </div>
 </section>
+
+<script>
+  // Live clock
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    const el = document.getElementById('soc-clock');
+    if (el) el.textContent = h + ':' + m + ':' + s;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Days as analyst since Oct 1 2025
+  const start = new Date('2025-10-01');
+  const days = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24));
+  const daysEl = document.getElementById('soc-days');
+  if (daysEl) daysEl.textContent = days;
+
+  // Count-up animation
+  document.querySelectorAll('.soc-stat-value[data-target]').forEach(el => {
+    const target = parseInt(el.getAttribute('data-target'));
+    let current = 0;
+    const increment = Math.ceil(target / 20);
+    const timer = setInterval(() => {
+      current = Math.min(current + increment, target);
+      el.textContent = current;
+      if (current >= target) clearInterval(timer);
+    }, 50);
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 {{ end }}
