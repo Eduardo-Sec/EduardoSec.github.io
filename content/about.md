@@ -1,6 +1,21 @@
 ---
-title: "About"
-draft: false
+title: About
+layout: about
+role: SOC Analyst Intern
+org: NebraskaCYBER MATRIX
+degree: BS Cybersecurity, Fast Track MS
+Minor: Computer Science
+concentrations:
+  - NSA CAE-CO (Cyber Operations)
+  - NSA CAE-CD (Cyber Defense)
+location: Omaha, NE
+links:
+  - label: github
+    url: https://github.com/yourusername
+  - label: contact
+    url: /contact
+  - label: pgp
+    url: /pgp
 ---
 
 I didn't take a straight path into cybersecurity.

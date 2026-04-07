@@ -1,0 +1,36 @@
+{{ define "main" }}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">▸ {{ .Title | lower }}</div>
+  <h1>{{ .Title }}<em>.</em></h1>
+  {{ with .Params.intro }}
+  <p class="hero-sub">{{ . }}</p>
+  {{ end }}
+</div>
+
+<section class="site-section">
+  <div class="project-cards">
+    {{ range .Params.projects }}
+    <div class="project-card">
+      <div class="project-card-top">
+        <div class="project-card-header">
+          <span class="project-title">{{ .title }}</span>
+          <span class="project-status status-{{ .status_type }}">{{ .status }}</span>
+        </div>
+        <p class="project-desc">{{ .desc }}</p>
+      </div>
+      <div class="project-card-footer">
+        <div class="project-tags">
+          {{ range .tags }}
+          <span class="project-tag mono">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ with .url }}
+        <a href="{{ . }}" class="project-link mono">source →</a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
