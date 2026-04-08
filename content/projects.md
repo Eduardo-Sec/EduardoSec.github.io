@@ -5,27 +5,27 @@ layout: projects
 draft: false
 projects:
   - title: Proxmox home lab
-    status: in progress
-    status_type: warn
+    status: waiting on hardware
+    status_type: pending
     tags: [proxmox, pfsense, wazuh, detection]
     desc: Dedicated security lab on a mini PC running Proxmox. pfSense for WAN/LAN separation, Wazuh for log collection, isolated malware sandbox, and QEMU ARM environment.
 
   - title: ARM malware analysis
     status: in progress
-    status_type: warn
+    status_type: active
     tags: [ghidra, qemu, arm, wazuh]
     desc: Static and dynamic analysis environment for ARM binaries. Starting with Mirai variants, ending with paired writeup and Wazuh detection rules built from real behavioral findings.
 
   - title: Portfolio site
     status: in progress
-    status_type: warn
+    status_type: active
     tags: [hugo, github-pages, css]
     desc: This site. Custom Hugo theme from scratch, deployed on GitHub Pages. Planning migration to self-hosted Proxmox with Cloudflare tunnel once the lab is up.
     url: https://github.com/Eduardo-Sec/EduardoSec.github.io
 
   - title: Security+
     status: exam scheduled summer 2026
-    status_type: info
+    status_type: pending
     tags: [SY0-701, certifications, blue team]
     desc: Working through SY0-701 with focus on Domain 4. After Security+, CySA+ is next since it maps directly to detection engineering work.
 ---

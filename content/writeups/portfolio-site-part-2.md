@@ -5,6 +5,7 @@ tags: ["project"]
 draft: false
 ---
 
+## Overview
 After the first writeup I had a working site with a GitHub Actions workflow, branch protection, and a PR based deployment process. That was a solid foundation but there was a lot left to build out. This covers everything I added after that, the security improvements, new pages, and the smaller details that make the site feel more complete.
 
 ---
@@ -15,13 +16,13 @@ The first thing I tackled was setting up a GPG key for commit signing. Every com
 
 Setting it up on Windows involved installing Gpg4win, generating a 4096 bit RSA key with a two year expiration, and configuring Git to sign every commit automatically. The key generation command is straightforward:
 
-```bash
+``` powershell
 gpg --full-generate-key
 ```
 
 After generating the key I exported the public key and added it to GitHub under Settings, SSH and GPG keys. Then I configured Git:
 
-```bash
+```powershell
 git config --global user.signingkey C40C15BD0B031356
 git config --global commit.gpgsign true
 git config --global gpg.program "C:\Program Files\GnuPG\bin\gpg.exe"

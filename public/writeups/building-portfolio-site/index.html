@@ -83,6 +83,7 @@
       <div class="toc-body" id="toc-body">
         <nav id="TableOfContents">
   <ul>
+    <li><a href="#overview">Overview</a></li>
     <li><a href="#choosing-the-stack">Choosing the stack</a></li>
     <li><a href="#getting-hugo-running">Getting Hugo running</a></li>
     <li><a href="#building-the-theme">Building the theme</a></li>
@@ -96,7 +97,8 @@
       </div>
     </div>
     
-    <p>I wanted a portfolio site that actually looked like something I built rather than something I dragged and dropped together. Most security portfolio sites look identical, a template with a headshot, a skills progress bar, and a contact form. I wanted something cleaner and more intentional, so I built mine from scratch using Hugo and deployed it on GitHub Pages with a custom domain.</p>
+    <h2 id="overview">Overview</h2>
+<p>I wanted a portfolio site that actually looked like something I built rather than something I dragged and dropped together. Most security portfolio sites look identical, a template with a headshot, a skills progress bar, and a contact form. I wanted something cleaner and more intentional, so I built mine from scratch using Hugo and deployed it on GitHub Pages with a custom domain.</p>
 <p>This writeup covers how I built it, the problems I ran into, and the security decisions I made along the way.</p>
 <hr>
 <h2 id="choosing-the-stack">Choosing the stack</h2>
@@ -109,7 +111,7 @@
 <p>Running <code>winget install Hugo.Hugo.Extended</code> would just load forever without completing. When I tried the Scoop method with <code>irm get.scoop.sh | iex</code> it appeared to do nothing. Neither package manager was working reliably.</p>
 <p>The fix was simpler than expected. I downloaded the Hugo extended binary directly from the GitHub releases page, created a <code>C:\Hugo\bin</code> folder, moved <code>hugo.exe</code> into it, and added that folder to my system PATH through the Windows environment variables GUI rather than through PowerShell. The GUI approach bypassed whatever was causing the PowerShell commands to freeze. After reopening a fresh terminal Hugo was working.</p>
 <p>A version check confirmed it:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo v0.159.2+extended windows/amd64
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">hugo</span> <span class="n">v0</span><span class="p">.</span><span class="py">159</span><span class="p">.</span><span class="mf">2</span><span class="p">+</span><span class="n">extended</span> <span class="n">windows</span><span class="p">/</span><span class="n">amd64</span>
 </span></span></code></pre></div><hr>
 <h2 id="building-the-theme">Building the theme</h2>
 <p>I structured the Hugo project with a fully custom theme folder rather than pulling in someone else&rsquo;s layout. The key files are a base template that every page inherits from, partials for the nav and footer that get included automatically, and separate layout files for the homepage, writeups list, individual writeup posts, and inner pages like about and projects.</p>
@@ -127,15 +129,15 @@
 <p>This is not theoretical. In March 2025 the <code>tj-actions/changed-files</code> action was compromised exactly this way, more than 350 tags were updated to point at a commit that dumped runner secrets, affecting over 23,000 repositories.</p>
 <p>I updated the workflow to pin the first party GitHub actions to their full commit SHA hashes. Third party composite actions like <code>peaceiris/actions-hugo</code> cannot be pinned by hash due to how GitHub resolves composite actions, so those stay on version tags which is an acceptable tradeoff.</p>
 <p>I also set up Dependabot to monitor the workflow file weekly and open pull requests when newer versions of pinned actions are available. The configuration is straightforward:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">version</span><span class="p">:</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl"><span class="n">updates</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">  <span class="o">-</span> <span class="n">package</span><span class="o">-</span><span class="n">ecosystem</span><span class="p">:</span> <span class="s2">&#34;github-actions&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">directory</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">schedule</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">      <span class="n">interval</span><span class="p">:</span> <span class="s2">&#34;weekly&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">commit</span><span class="o">-</span><span class="n">message</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">      <span class="n">prefix</span><span class="p">:</span> <span class="s2">&#34;chore&#34;</span>
-</span></span></code></pre></div><p>One problem that came up with Dependabot is that when it opens a pull request, GitHub Actions runs the workflow on that PR branch. The deploy job was failing because PR branches are not allowed to deploy to the github-pages environment, only the master branch is. The fix was adding a condition to the deploy job to skip when the event is a pull request:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">updates</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">package-ecosystem</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;github-actions&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">directory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">schedule</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;weekly&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">commit-message</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;chore&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>One problem that came up with Dependabot is that when it opens a pull request, GitHub Actions runs the workflow on that PR branch. The deploy job was failing because PR branches are not allowed to deploy to the github-pages environment, only the master branch is. The fix was adding a condition to the deploy job to skip when the event is a pull request:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">github.event_name != &#39;pull_request&#39;</span><span class="w">
 </span></span></span></code></pre></div><p>This lets the build job run on Dependabot PRs and report a green status check so the PR can be merged, but nothing actually deploys until the PR is merged into master and a real push triggers the full workflow.</p>
 <hr>
@@ -162,6 +164,16 @@
     <span class="section-title">related writeups</span>
   </div>
   <div class="writeups">
+    
+    <a href="http://localhost:1313/writeups/portfolio-site-part-3/" class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot"></div>
+        <span class="writeup-title">Redesigning the portfolio site, layouts, animations, and a SOC dashboard</span>
+      </div>
+      <div class="writeup-right">
+        <span class="writeup-date mono">04-07-2026</span>
+      </div>
+    </a>
     
     <a href="http://localhost:1313/writeups/portfolio-site-part-2/" class="writeup-row">
       <div class="writeup-left">
@@ -214,14 +226,27 @@
       }
 
       
-      document.querySelectorAll('.post-content pre').forEach(function(pre) {
+      document.querySelectorAll('.post-content .highlight').forEach(function(block) {
+        const code = block.querySelector('code');
+        const lang = code ? code.getAttribute('data-lang') : '';
+        const pre = block.querySelector('pre');
+
+        const header = document.createElement('div');
+        header.className = 'code-header';
+
+        const label = document.createElement('span');
+        label.className = 'code-lang mono';
+        label.textContent = lang || 'code';
+
         const btn = document.createElement('button');
         btn.className = 'copy-btn mono';
         btn.textContent = 'copy';
-        pre.style.position = 'relative';
-        pre.appendChild(btn);
+
+        header.appendChild(label);
+        header.appendChild(btn);
+        block.insertBefore(header, pre);
+
         btn.addEventListener('click', function() {
-          const code = pre.querySelector('code');
           navigator.clipboard.writeText(code ? code.innerText : pre.innerText).then(function() {
             btn.textContent = 'copied';
             setTimeout(function() { btn.textContent = 'copy'; }, 2000);
@@ -237,10 +262,15 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.08 });
+      }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
 
       document.querySelectorAll('.fade-in').forEach(function(el) {
-        observer.observe(el);
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          el.classList.add('visible');
+        } else {
+          observer.observe(el);
+        }
       });
 
     });
