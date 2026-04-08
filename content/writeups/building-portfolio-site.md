@@ -5,6 +5,7 @@ tags: ["project"]
 draft: false
 ---
 
+## Overview
 I wanted a portfolio site that actually looked like something I built rather than something I dragged and dropped together. Most security portfolio sites look identical, a template with a headshot, a skills progress bar, and a contact form. I wanted something cleaner and more intentional, so I built mine from scratch using Hugo and deployed it on GitHub Pages with a custom domain.
 
 This writeup covers how I built it, the problems I ran into, and the security decisions I made along the way.
@@ -30,7 +31,7 @@ The fix was simpler than expected. I downloaded the Hugo extended binary directl
 
 A version check confirmed it:
 
-``` bash
+``` powershell
 hugo v0.159.2+extended windows/amd64
 ```
 
@@ -65,7 +66,7 @@ I updated the workflow to pin the first party GitHub actions to their full commi
 
 I also set up Dependabot to monitor the workflow file weekly and open pull requests when newer versions of pinned actions are available. The configuration is straightforward:
 
-``` python
+``` YAML
 version: 2
 updates:
   - package-ecosystem: "github-actions"
