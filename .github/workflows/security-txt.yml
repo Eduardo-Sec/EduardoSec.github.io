@@ -1,0 +1,57 @@
+name: Update security.txt expiry
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-expiry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Check and update expiry
+        run: |
+          FILE="static/.well-known/security.txt"
+          CURRENT_EXPIRY=$(grep "^Expires:" "$FILE" | sed 's/Expires: //')
+          echo "Current expiry: $CURRENT_EXPIRY"
+
+          EXPIRY_SECONDS=$(date -d "$CURRENT_EXPIRY" +%s)
+          NOW_SECONDS=$(date +%s)
+          DAYS_LEFT=$(( (EXPIRY_SECONDS - NOW_SECONDS) / 86400 ))
+          echo "Days until expiry: $DAYS_LEFT"
+
+          if [ "$DAYS_LEFT" -le 30 ]; then
+            echo "Expiry is within 30 days, updating..."
+            NEW_EXPIRY=$(date -u -d "+1 year" +"%Y-%m-%dT%H:%M:%SZ")
+            sed -i "s|^Expires:.*|Expires: $NEW_EXPIRY|" "$FILE"
+            echo "Updated expiry to: $NEW_EXPIRY"
+            echo "NEEDS_UPDATE=true" >> $GITHUB_ENV
+          else
+            echo "Expiry is more than 30 days away, no update needed."
+            echo "NEEDS_UPDATE=false" >> $GITHUB_ENV
+          fi
+
+      - name: Open PR if update needed
+        if: env.NEEDS_UPDATE == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="chore/update-security-txt-expiry"
+          git checkout -b "$BRANCH"
+          git add static/.well-known/security.txt
+          git commit -m "chore: update security.txt expiry date"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "chore: update security.txt expiry date" \
+            --body "The security.txt Expires field is within 30 days of expiring. This PR updates it to one year from today." \
+            --base master \
+            --head "$BRANCH"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
