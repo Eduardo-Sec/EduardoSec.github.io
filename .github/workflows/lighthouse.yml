@@ -1,0 +1,28 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12.6.2
+        with:
+          urls: |
+            https://ebustamante.dev/
+            https://ebustamante.dev/writeups/
+            https://ebustamante.dev/about/
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_HASH: ${{ github.sha }}
