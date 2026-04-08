@@ -2,3 +2,4 @@ Contact: mailto:eabustamante1@gmail.com
 Encryption: https://ebustamante.dev/pgp
 Preferred-Languages: EN / ES
 Canonical: https://ebustamante.dev/.well-known/security.txt
+Expires: 2027-04-08T00:00:00Z
