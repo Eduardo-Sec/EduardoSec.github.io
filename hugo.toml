@@ -14,6 +14,7 @@ theme = "ebustamante"
     style = "dracula"
     lineNos = false
     noClasses = false
+    guessSyntax = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
