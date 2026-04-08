@@ -37,6 +37,7 @@ jobs:
             --base https://ebustamante.dev
             --exclude 'linkedin\.com'
             --exclude 'mailto:'
+            --exclude 'ebustamante\.dev'
             --timeout 10
             --max-retries 3
             ./public
