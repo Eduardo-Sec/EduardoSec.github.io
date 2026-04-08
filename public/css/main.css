@@ -229,7 +229,7 @@ nav {
   50% { opacity: 0.4; }
 }
 
-.soc-title { font-size: 10px; color: var(--ac); letter-spacing: 0.15em; font-weight: 500; }
+.soc-title { margin-top: 1.5px; font-size: 10px; color: var(--ac); letter-spacing: 0.15em; font-weight: 500; }
 .soc-time { font-size: 11px; color: #444; letter-spacing: 0.05em; }
 .soc-body { padding: 20px; }
 
