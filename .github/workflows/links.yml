@@ -30,13 +30,13 @@ jobs:
         run: hugo --minify
 
       - name: Check links
-        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2.8.0
+        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2.x
         with:
           args: >
             --no-progress
-            --exclude 'localhost'
-            --exclude 'ebustamante\.dev'
+            --base https://ebustamante.dev
             --exclude 'linkedin\.com'
+            --exclude 'mailto:'
             --timeout 10
             --max-retries 3
             ./public
