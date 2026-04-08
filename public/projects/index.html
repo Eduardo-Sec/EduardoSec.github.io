@@ -73,7 +73,7 @@
       <div class="project-card-top">
         <div class="project-card-header">
           <span class="project-title">Proxmox home lab</span>
-          <span class="project-status status-warn">in progress</span>
+          <span class="project-status status-pending">waiting on hardware</span>
         </div>
         <p class="project-desc">Dedicated security lab on a mini PC running Proxmox. pfSense for WAN/LAN separation, Wazuh for log collection, isolated malware sandbox, and QEMU ARM environment.</p>
       </div>
@@ -97,7 +97,7 @@
       <div class="project-card-top">
         <div class="project-card-header">
           <span class="project-title">ARM malware analysis</span>
-          <span class="project-status status-warn">in progress</span>
+          <span class="project-status status-active">in progress</span>
         </div>
         <p class="project-desc">Static and dynamic analysis environment for ARM binaries. Starting with Mirai variants, ending with paired writeup and Wazuh detection rules built from real behavioral findings.</p>
       </div>
@@ -121,7 +121,7 @@
       <div class="project-card-top">
         <div class="project-card-header">
           <span class="project-title">Portfolio site</span>
-          <span class="project-status status-warn">in progress</span>
+          <span class="project-status status-active">in progress</span>
         </div>
         <p class="project-desc">This site. Custom Hugo theme from scratch, deployed on GitHub Pages. Planning migration to self-hosted Proxmox with Cloudflare tunnel once the lab is up.</p>
       </div>
@@ -145,7 +145,7 @@
       <div class="project-card-top">
         <div class="project-card-header">
           <span class="project-title">Security&#43;</span>
-          <span class="project-status status-info">exam scheduled summer 2026</span>
+          <span class="project-status status-pending">exam scheduled summer 2026</span>
         </div>
         <p class="project-desc">Working through SY0-701 with focus on Domain 4. After Security&#43;, CySA&#43; is next since it maps directly to detection engineering work.</p>
       </div>
@@ -190,14 +190,27 @@
       }
 
       
-      document.querySelectorAll('.post-content pre').forEach(function(pre) {
+      document.querySelectorAll('.post-content .highlight').forEach(function(block) {
+        const code = block.querySelector('code');
+        const lang = code ? code.getAttribute('data-lang') : '';
+        const pre = block.querySelector('pre');
+
+        const header = document.createElement('div');
+        header.className = 'code-header';
+
+        const label = document.createElement('span');
+        label.className = 'code-lang mono';
+        label.textContent = lang || 'code';
+
         const btn = document.createElement('button');
         btn.className = 'copy-btn mono';
         btn.textContent = 'copy';
-        pre.style.position = 'relative';
-        pre.appendChild(btn);
+
+        header.appendChild(label);
+        header.appendChild(btn);
+        block.insertBefore(header, pre);
+
         btn.addEventListener('click', function() {
-          const code = pre.querySelector('code');
           navigator.clipboard.writeText(code ? code.innerText : pre.innerText).then(function() {
             btn.textContent = 'copied';
             setTimeout(function() { btn.textContent = 'copy'; }, 2000);
@@ -213,10 +226,15 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.08 });
+      }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
 
       document.querySelectorAll('.fade-in').forEach(function(el) {
-        observer.observe(el);
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          el.classList.add('visible');
+        } else {
+          observer.observe(el);
+        }
       });
 
     });
