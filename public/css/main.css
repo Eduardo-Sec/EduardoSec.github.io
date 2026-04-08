@@ -689,9 +689,9 @@ nav {
   flex-shrink: 0;
 }
 
-.status-warn { background: rgba(251, 191, 36, 0.08); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.2); }
-.status-info { background: var(--ac-bg); color: var(--ac); border: 1px solid #2d1a4a; }
-.status-done { background: rgba(34, 197, 94, 0.08); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.2); }
+.status-pending { background: rgba(251, 191, 36, 0.08); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.2); }
+.status-done { background: var(--ac-bg); color: var(--ac); border: 1px solid #2d1a4a; }
+.status-active { background: rgba(34, 197, 94, 0.08); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.2); }
 
 .project-desc { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
 .project-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
