@@ -6,8 +6,18 @@
     <description>Recent content on Eduardo Bustamante | Cybersecurity Student &amp; SOC Analyst</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/writeups/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Automating the portfolio site, link checking, spell checking, Lighthouse, and security audits</title>
+      <link>http://localhost:1313/writeups/portfolio-site-part-4/</link>
+      <pubDate>Wed, 08 Apr 2026 00:00:00 &#43;0000</pubDate>
+      <guid>http://localhost:1313/writeups/portfolio-site-part-4/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The site already had one GitHub Actions workflow handling build and deploy with pinned commit hashes and Dependabot monitoring the workflow file weekly. That covered getting the site live but nothing was checking the quality of what went live. This covers five new workflows I added to automate that side of things, broken link detection, spell checking, performance auditing, security header monitoring, and keeping security.txt compliant automatically.&lt;/p&gt;
+&lt;p&gt;The foundation was already there. Pinned commit hashes, branch protection, PR workflow. These five workflows build on top of that rather than replacing anything. The goal was catching different categories of problems automatically so I am not manually checking things that a workflow can handle.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Redesigning the portfolio site, layouts, animations, and a SOC dashboard</title>
