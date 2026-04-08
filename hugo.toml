@@ -6,6 +6,8 @@ theme = "ebustamante"
 [params]
   description = "Cybersecurity student at UNOmaha. SOC Analyst Intern focused on Detection Engineering. Exploring ARM malware analysis, and other blue team topics."
   status = "UNO · Omaha, NE"
+  certs_in_progress = 1
+  tools_and_technologies = 24
 
 [markup]
   [markup.highlight]
