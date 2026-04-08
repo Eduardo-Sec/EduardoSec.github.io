@@ -1,0 +1,45 @@
+name: Security headers check
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 9 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  headers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check security headers
+        run: |
+          echo "Checking security headers for ebustamante.dev..."
+          HEADERS=$(curl -sI https://ebustamante.dev)
+          echo "$HEADERS"
+          echo ""
+          echo "=== HEADER AUDIT ==="
+
+          check_header() {
+            HEADER=$1
+            if echo "$HEADERS" | grep -qi "^$HEADER:"; then
+              echo "✓ $HEADER present"
+            else
+              echo "✗ $HEADER missing"
+            fi
+          }
+
+          check_header "strict-transport-security"
+          check_header "x-content-type-options"
+          check_header "x-frame-options"
+          check_header "referrer-policy"
+          check_header "permissions-policy"
+          check_header "content-security-policy"
+          check_header "cross-origin-opener-policy"
+
+          echo ""
+          echo "Note: CSP, COOP, and X-Frame-Options require server-level"
+          echo "control and are not configurable on GitHub Pages."
+          echo "These will be addressed during Nginx migration."
