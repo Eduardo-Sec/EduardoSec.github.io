@@ -1,0 +1,22 @@
+/* TEAM */
+Name: Eduardo Bustamante
+Role: Developer, Designer
+Location: Omaha, Nebraska, USA
+GitHub: github.com/Eduardo-Sec
+Site: ebustamante.dev
+
+/* SITE */
+Last update: 2026/04/08
+Language: English
+Doctype: HTML5
+IDE: VS Code
+Standards: HTML5, CSS3, JavaScript
+Components: Hugo, GitHub Pages, GitHub Actions
+Fonts: Inter, JetBrains Mono (Google Fonts)
+
+/* THANKS */
+Hugo - gohugo.io
+Fuse.js - fusejs.io
+lychee - lychee.cli.rs
+cspell - cspell.org
+Lighthouse CI - github.com/GoogleChrome/lighthouse-ci
