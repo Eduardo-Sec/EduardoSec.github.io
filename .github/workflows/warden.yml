@@ -1,17 +1,18 @@
-name: Security Scan
+name: Workflow Security
 
 on:
-  push:
-    branches: [main]
   pull_request:
+    paths:
+      - '.github/workflows/**'
 
 jobs:
-  warden:
+  scan:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      checks: write  # required for annotations
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
       - uses: projectwarden/warden@7f13104599d0c765952bc981e370b7c585e9f818  # v1.0.0
         with:
-          path: .github/workflows
+          fail-on: critical
