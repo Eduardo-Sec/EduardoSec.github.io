@@ -1,9 +1,9 @@
------
-
-## title: “Deploying and hardening Wazuh, SIEM setup, pfSense integration, and custom detection rules”
+---
+title: "Deploying and hardening Wazuh, SIEM setup, pfSense integration, and custom detection rules"
 date: 2026-06-11
-tags: [“project”]
+tags: ["project"]
 draft: false
+---
 
 ## Overview
 
