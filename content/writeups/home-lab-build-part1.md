@@ -1,6 +1,6 @@
 ---
 title: "Building the home lab, Proxmox, pfSense, and a production-grade home network from scratch"
-date: 2026-06-05
+date: 2026-06-04
 tags: ["project"]
 draft: false
 ---
