@@ -1,0 +1,11 @@
+# Cloudflare Zero Trust tunnel config
+# Fill in TUNNEL_ID after running: cloudflared tunnel create ebustamante
+# File goes at: /etc/cloudflared/config.yml
+
+tunnel: TUNNEL_ID
+credentials-file: /root/.cloudflared/TUNNEL_ID.json
+
+ingress:
+  - hostname: ebustamante.dev
+    service: http://127.0.0.1:80
+  - service: http_status:404
