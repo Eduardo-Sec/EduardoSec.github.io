@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Tags · {{ site_title }}{% endblock %}
+
+{% block main %}
+<div class="page-hero">
+  <a href="{% url 'writeup_list' %}" class="back-btn mono">← writeups</a>
+  <div class="hero-tag mono">▸ tags</div>
+  <h1>Tags<em>.</em></h1>
+</div>
+
+<section class="site-section fade-in">
+  <div class="tags-grid">
+    {% for tag in tags %}
+    <a href="{{ tag.get_absolute_url }}" class="tag-item">
+      <span class="tag-name">{{ tag.slug }}</span>
+      <span class="tag-count">{{ tag.writeups.count }}</span>
+    </a>
+    {% empty %}
+    <p style="color:var(--text-muted);">No tags yet.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

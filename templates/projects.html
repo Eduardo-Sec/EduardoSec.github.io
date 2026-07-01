@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects · {{ site_title }}{% endblock %}
+{% block og_title %}Projects · {{ site_title }}{% endblock %}
+
+{% block main %}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">▸ projects</div>
+  <h1>Projects<em>.</em></h1>
+  <p class="hero-sub">Things I am actively working on. Nothing here is listed as finished until it actually is.</p>
+</div>
+
+<section class="site-section">
+  <div class="project-cards">
+
+    <div class="project-card">
+      <div class="project-card-top">
+        <div class="project-card-header">
+          <span class="project-title">Proxmox home lab</span>
+          <span class="project-status status-active">in progress</span>
+        </div>
+        <p class="project-desc">Dedicated security lab on a mini PC running Proxmox. pfSense for WAN/LAN separation, Wazuh for log collection, isolated malware sandbox, and QEMU ARM environment.</p>
+      </div>
+      <div class="project-card-footer">
+        <div class="project-tags">
+          <span class="project-tag mono">proxmox</span>
+          <span class="project-tag mono">pfsense</span>
+          <span class="project-tag mono">wazuh</span>
+          <span class="project-tag mono">detection</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-card-top">
+        <div class="project-card-header">
+          <span class="project-title">ARM malware analysis</span>
+          <span class="project-status status-active">in progress</span>
+        </div>
+        <p class="project-desc">Static and dynamic analysis environment for ARM binaries. Starting with Mirai variants, ending with paired writeup and Wazuh detection rules built from real behavioral findings.</p>
+      </div>
+      <div class="project-card-footer">
+        <div class="project-tags">
+          <span class="project-tag mono">ghidra</span>
+          <span class="project-tag mono">qemu</span>
+          <span class="project-tag mono">arm</span>
+          <span class="project-tag mono">wazuh</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-card-top">
+        <div class="project-card-header">
+          <span class="project-title">Portfolio site</span>
+          <span class="project-status status-active">in progress</span>
+        </div>
+        <p class="project-desc">This site. Migrating from Hugo + GitHub Pages to a self-hosted Django app on Rocky Linux 9, served by Nginx through a Cloudflare Zero Trust tunnel.</p>
+      </div>
+      <div class="project-card-footer">
+        <div class="project-tags">
+          <span class="project-tag mono">django</span>
+          <span class="project-tag mono">nginx</span>
+          <span class="project-tag mono">cloudflare</span>
+        </div>
+        <a href="https://github.com/Eduardo-Sec/EduardoSec.github.io" class="project-link mono" target="_blank" rel="noopener noreferrer">source →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-card-top">
+        <div class="project-card-header">
+          <span class="project-title">Security+</span>
+          <span class="project-status status-pending">exam scheduled summer 2026</span>
+        </div>
+        <p class="project-desc">Working through SY0-701 with focus on Domain 4. After Security+, CySA+ is next since it maps directly to detection engineering work.</p>
+      </div>
+      <div class="project-card-footer">
+        <div class="project-tags">
+          <span class="project-tag mono">SY0-701</span>
+          <span class="project-tag mono">certifications</span>
+          <span class="project-tag mono">blue team</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag mono">⬡ SOC analyst · detection engineering</div>
+    <h1>Eduardo<br>Bustamante<em>.</em></h1>
+    <p class="hero-sub">Cybersecurity student at UNO and SOC Analyst Intern with the NebraskaCYBER MATRIX program. I build and tune detections, triage alerts, and analyze threats in real environments.</p>
+    <div class="hero-actions">
+      <a href="{% url 'writeup_list' %}" class="btn-primary">View writeups</a>
+      <a href="https://github.com/Eduardo-Sec" class="btn-secondary" target="_blank" rel="noopener noreferrer">GitHub →</a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Currently</span>
+        <span class="meta-value"><span>SOC Analyst Intern</span> · NebraskaCYBER MATRIX</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Focus</span>
+        <span class="meta-value">Wazuh · Detection Engineering · Blue Team</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Degree</span>
+        <span class="meta-value">BS Cybersecurity · Fast Track MS</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Minor</span>
+        <span class="meta-value">Computer Science</span>
+      </div>
+      <div class="meta-item meta-full">
+        <span class="meta-label">Concentration</span>
+        <span class="meta-value">NSA <span>CAE-CO (Cyber Operations) / CAE-CD (Cyber Defense)</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="soc-dashboard">
+      <div class="soc-header">
+        <div class="soc-header-left">
+          <span class="soc-dot active"></span>
+          <span class="soc-title mono">ANALYST STATUS</span>
+        </div>
+        <span class="soc-time mono" id="soc-clock">--:--:--</span>
+      </div>
+      <div class="soc-body">
+        <div class="soc-stat-grid">
+          <div class="soc-stat">
+            <div class="soc-stat-value mono" data-target="{{ writeup_count }}">0</div>
+            <div class="soc-stat-label mono">writeups</div>
+          </div>
+          <div class="soc-stat">
+            <div class="soc-stat-value mono" id="soc-days">0</div>
+            <div class="soc-stat-label mono">days as analyst</div>
+          </div>
+          <div class="soc-stat">
+            <div class="soc-stat-value mono">{{ certs_in_progress }}</div>
+            <div class="soc-stat-label mono">certs in progress</div>
+          </div>
+          <div class="soc-stat">
+            <div class="soc-stat-value mono">{{ tools_and_technologies }}</div>
+            <div class="soc-stat-label mono">tools & technologies</div>
+          </div>
+        </div>
+        <div class="soc-divider"></div>
+        <div class="soc-feeds">
+          <div class="soc-feed-item">
+            <span class="soc-feed-status info mono">INFO</span>
+            <span class="soc-feed-text mono">GPG commit signing active</span>
+          </div>
+          <div class="soc-feed-item">
+            <span class="soc-feed-status active mono">ACTIVE</span>
+            <span class="soc-feed-text mono">Wazuh monitoring enabled</span>
+          </div>
+          <div class="soc-feed-item">
+            <span class="soc-feed-status warn mono">WIP</span>
+            <span class="soc-feed-text mono">ARM malware lab initializing</span>
+          </div>
+          <div class="soc-feed-item">
+            <span class="soc-feed-status info mono">STUDY</span>
+            <span class="soc-feed-text mono">SY0-701 Security+ in progress</span>
+          </div>
+          <div class="soc-feed-item">
+            <span class="soc-feed-status warn mono">WIP</span>
+            <span class="soc-feed-text mono">Proxmox P3 lab pending hardware</span>
+          </div>
+        </div>
+        <div class="soc-divider"></div>
+        <div class="soc-footer mono">
+          <span class="soc-footer-item"><span class="soc-dot active small"></span> ebustamante SOC online</span>
+          <span class="soc-footer-item">UNO · Omaha, NE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="site-section fade-in">
+  <div class="section-header">
+    <span class="section-num mono">▸ recent writeups</span>
+  </div>
+  <div class="writeups">
+    {% for writeup in recent_writeups %}
+    <a href="{{ writeup.get_absolute_url }}" class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot"></div>
+        <span class="writeup-title">{{ writeup.title }}</span>
+      </div>
+      <div class="writeup-right">
+        <span class="writeup-tag">{{ writeup.primary_tag }}</span>
+        <span class="writeup-date mono">{{ writeup.date|date:"m-d-Y" }}</span>
+      </div>
+    </a>
+    {% empty %}
+    <div class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot" style="background:#2a2a2a;"></div>
+        <span class="writeup-title" style="color:#555;">Writeups coming soon</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="site-section fade-in">
+  <div class="section-header">
+    <span class="section-num mono">▸ focus areas</span>
+  </div>
+  <div class="focus-cards-wrap">
+    <div class="scan-bar-track">
+      <div class="scan-bar"></div>
+    </div>
+    <div class="focus-cards-grid">
+      <a href="{% url 'writeup_list' %}" class="focus-card">
+        <div class="focus-card-tag mono">Detection</div>
+        <div class="focus-card-title">Wazuh rule engineering</div>
+        <div class="focus-card-desc">Writing and tuning detection rules based on real attacker behavior in production environments.</div>
+        <div class="focus-card-link mono">view writeups →</div>
+      </a>
+      <a href="{% url 'writeup_list' %}" class="focus-card">
+        <div class="focus-card-tag mono">Operations</div>
+        <div class="focus-card-title">SOC analysis</div>
+        <div class="focus-card-desc">Alert triage, threat analysis, and incident response as part of the NebraskaCYBER MATRIX SOC program.</div>
+        <div class="focus-card-link mono">view writeups →</div>
+      </a>
+      <a href="{% url 'projects' %}" class="focus-card">
+        <div class="focus-card-tag mono">Infrastructure</div>
+        <div class="focus-card-title">Home lab</div>
+        <div class="focus-card-desc">Proxmox, pfSense + Suricata, isolated malware sandbox, full detection pipeline.</div>
+        <div class="focus-card-link mono">view projects →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="site-section fade-in">
+  <div class="section-header">
+    <span class="section-num mono">▸ tools & technologies</span>
+  </div>
+  <div class="tools-new">
+    <div class="tool-group-new">
+      <div class="tool-group-label mono">Detection & SIEM</div>
+      <div class="tool-pills">
+        <span class="tool">Wazuh</span>
+        <span class="tool">Splunk</span>
+      </div>
+    </div>
+    <div class="tool-group-new">
+      <div class="tool-group-label mono">Operating systems</div>
+      <div class="tool-pills">
+        <span class="tool">Kali Linux</span>
+        <span class="tool">Ubuntu</span>
+        <span class="tool">Rocky Linux</span>
+        <span class="tool">Windows</span>
+        <span class="tool">macOS</span>
+      </div>
+    </div>
+    <div class="tool-group-new">
+      <div class="tool-group-label mono">Tools</div>
+      <div class="tool-pills">
+        <span class="tool">Ghidra</span>
+        <span class="tool">QEMU</span>
+        <span class="tool">Wireshark</span>
+        <span class="tool">Nmap</span>
+      </div>
+    </div>
+    <div class="tool-group-new">
+      <div class="tool-group-label mono">Frameworks</div>
+      <div class="tool-pills">
+        <span class="tool">NIST SP 800-53</span>
+        <span class="tool">NIST SP 800-171 (CMMC)</span>
+        <span class="tool">HIPAA</span>
+        <span class="tool">PCI DSS</span>
+      </div>
+    </div>
+    <div class="tool-group-new">
+      <div class="tool-group-label mono">Languages</div>
+      <div class="tool-pills">
+        <span class="tool">Python</span>
+        <span class="tool">C</span>
+        <span class="tool">ARM assembly</span>
+        <span class="tool">Bash</span>
+        <span class="tool">PowerShell</span>
+        <span class="tool">HTML</span>
+      </div>
+    </div>
+    <div class="tool-group-new">
+      <div class="tool-group-label mono">Infrastructure</div>
+      <div class="tool-pills">
+        <span class="tool">Proxmox</span>
+        <span class="tool">pfSense</span>
+        <span class="tool">Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  (function () {
+    // SOC clock
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      const el = document.getElementById('soc-clock');
+      if (el) el.textContent = h + ':' + m + ':' + s;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Days as analyst counter
+    const start = new Date('{{ analyst_start_date }}');
+    const days = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24));
+    const daysEl = document.getElementById('soc-days');
+    if (daysEl) daysEl.textContent = days;
+
+    // Stat count-up animation
+    document.querySelectorAll('.soc-stat-value[data-target]').forEach(function (el) {
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      if (!target) { el.textContent = target; return; }
+      let current = 0;
+      const increment = Math.ceil(target / 20);
+      const timer = setInterval(function () {
+        current = Math.min(current + increment, target);
+        el.textContent = current;
+        if (current >= target) clearInterval(timer);
+      }, 50);
+    });
+  })();
+</script>
+{% endblock %}
