@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}RSS · {{ site_title }}{% endblock %}
+{% block og_title %}RSS · {{ site_title }}{% endblock %}
+{% block meta_description %}Subscribe to writeups via RSS.{% endblock %}
+
+{% block main %}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">▸ rss</div>
+  <h1>RSS<em>.</em></h1>
+  <p class="hero-sub">Subscribe to new writeups without checking back manually.</p>
+</div>
+
+<section class="site-section fade-in">
+  <div class="section-header">
+    <span class="section-num mono">▸ what is this</span>
+  </div>
+  <p style="max-width:640px; color:var(--text-muted); margin-bottom:20px; line-height:1.7;">
+    This is a standard RSS feed. Paste the URL below into any feed reader (Feedly, NewsBlur, NetNewsWire) and you'll get notified whenever a new writeup goes up.
+  </p>
+  <div class="pgp-command mono" style="max-width:480px;">{{ site_url }}{% url 'rss_feed' %}</div>
+</section>
+
+<section class="site-section fade-in">
+  <div class="section-header">
+    <span class="section-num mono">▸ recent writeups</span>
+  </div>
+  <div class="writeups">
+    {% for writeup in recent_writeups %}
+    <a href="{{ writeup.get_absolute_url }}" class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot"></div>
+        <span class="writeup-title">{% if writeup.featured %}<span class="featured-badge">★</span>{% endif %} {{ writeup.title }}</span>
+      </div>
+      <div class="writeup-right">
+        <span class="writeup-tag">{{ writeup.primary_tag }}</span>
+        <span class="writeup-date mono">{{ writeup.date|date:"m-d-Y" }}</span>
+      </div>
+    </a>
+    {% empty %}
+    <div class="writeup-row">
+      <div class="writeup-left">
+        <div class="writeup-dot writeup-dot--empty"></div>
+        <span class="writeup-title writeup-title--empty">Writeups coming soon</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
