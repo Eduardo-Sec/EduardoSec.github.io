@@ -1,0 +1,21 @@
+[Unit]
+Description=ebustamante.dev Django/Gunicorn
+After=network.target
+
+[Service]
+Type=notify
+User=ebustamante
+Group=ebustamante
+WorkingDirectory=/opt/ebustamante
+EnvironmentFile=/opt/ebustamante/.env
+ExecStart=/opt/ebustamante/.venv/bin/gunicorn \
+    --workers 2 \
+    --bind 127.0.0.1:8000 \
+    --access-logfile /var/log/ebustamante/access.log \
+    --error-logfile /var/log/ebustamante/error.log \
+    portfolio.wsgi:application
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,1 +1,11 @@
 public/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+db.sqlite3
+staticfiles/
+.env
+*.egg-info/
+dist/
+.hugo_build.lock
