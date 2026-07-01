@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Writeups · {{ site_title }}{% endblock %}
+{% block og_type %}website{% endblock %}
+{% block og_title %}Writeups · {{ site_title }}{% endblock %}
+
+{% block extra_head %}
+<script src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js" defer></script>
+{% endblock %}
+
+{% block main %}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">▸ writeups</div>
+  <h1>Writeups<em>.</em></h1>
+  <p class="hero-sub">Detection engineering notes, CTF walkthroughs, and security research.</p>
+  <a href="{% url 'tag_list' %}" class="mono browse-tags">browse by tag →</a>
+</div>
+
+<section class="site-section fade-in">
+
+  <form id="filter-form"
+        hx-get="{% url 'writeup_search' %}"
+        hx-trigger="input from:#search-input delay:300ms, click from:.tag-filter-btn"
+        hx-target="#writeups-container">
+
+    <div class="search-wrap">
+      <input
+        type="text"
+        id="search-input"
+        name="q"
+        class="search-input mono"
+        placeholder="search writeups..."
+        autocomplete="off"
+      />
+    </div>
+
+    <input type="hidden" id="active-tag" name="tag" value="">
+
+    <div class="tag-filters">
+      <button type="button" class="tag-filter-btn tag-filter-btn--active" data-tag="">all</button>
+      {% for tag in tags %}
+      <button type="button" class="tag-filter-btn" data-tag="{{ tag.slug }}">{{ tag.slug }}</button>
+      {% endfor %}
+    </div>
+
+  </form>
+
+  <div id="writeups-container" class="writeups">
+    {% include 'writeups/_rows.html' %}
+  </div>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  (function () {
+    const buttons = document.querySelectorAll('.tag-filter-btn');
+    const activeTagInput = document.getElementById('active-tag');
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        buttons.forEach(function (b) { b.classList.remove('tag-filter-btn--active'); });
+        this.classList.add('tag-filter-btn--active');
+        activeTagInput.value = this.dataset.tag;
+      });
+    });
+  })();
+</script>
+{% endblock %}

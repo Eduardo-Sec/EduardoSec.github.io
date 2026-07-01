@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}About · {{ site_title }}{% endblock %}
+{% block og_title %}About · {{ site_title }}{% endblock %}
+
+{% block main %}
+<div class="page-hero">
+  <a href="javascript:history.back()" class="back-btn mono">← back</a>
+  <div class="hero-tag mono">▸ about</div>
+  <h1>About<em>.</em></h1>
+</div>
+
+<section class="site-section">
+  <div class="about-layout">
+
+    <div class="post-content">
+      <p>I didn't take a straight path into cybersecurity.</p>
+
+      <p>My original plan was accounting, which I walked away from pretty quickly once I realized it wasn't for me. After that I spent time trying to break into the electrical trade, didn't have much luck finding work, and ended up working for a railroad contractor. It paid the bills but I felt like I was just going through the motions.</p>
+
+      <p>What changed things was teaching myself how to build a website. I wanted to put together an ecommerce site and started learning UI/UX in the process. That opened a door I didn't expect. Digging into web development exposed me to the broader world of IT, and somewhere in that process I found cybersecurity. It clicked immediately in a way that nothing else had. I enrolled at UNO shortly after and haven't looked back.</p>
+
+      <p>I think that winding path actually helped me. Working trades and feeling what it's like to be unfulfilled gave me a lot of clarity about what I actually want. I don't take the opportunity to study something I genuinely care about for granted.</p>
+
+      <h2>What I'm working on</h2>
+
+      <p>Right now I'm a sophomore at UNO in the BS Cybersecurity program with a Computer Science minor and dual NSA concentrations in Cyber Operations and Cyber Defense. I'm also in the Fast Track program which lets me start working toward my master's degree before I finish my undergrad.</p>
+
+      <p>On the work side I'm a SOC Analyst Intern with the NebraskaCYBER MATRIX program, where I work with Wazuh doing detection engineering, alert triage, and threat analysis. I also work at a startup focused on CMMC compliance, which has given me a lot of hands-on exposure to GRC and how security frameworks connect to real engineering decisions. Working on both sides of that has been one of the more valuable things I've done because it forces you to understand how policy and technical controls actually relate to each other rather than treating them as separate worlds.</p>
+
+      <h2>What I'm aiming for</h2>
+
+      <p>I'm interested in both engineering and GRC, and honestly I don't see them as separate tracks. The best security work happens when you understand the technical depth and can also communicate risk in a way that drives decisions. That's what I'm building toward.</p>
+
+      <p>After graduation I'm starting my master's degree and positioning myself for roles where I can work on both sides of that. Whether that looks like a detection engineering role, a security architecture position, or something GRC-focused, I want to be the kind of professional who can move across those areas rather than being locked into one lane.</p>
+
+      <h2>Outside of work</h2>
+
+      <p>I'm passionate about MMA. I watch it closely and train as well. There's something about the discipline and problem solving involved that I've always connected with.</p>
+
+      <h2>Get in touch</h2>
+
+      <p>If you want to talk security, compare notes on Wazuh detections, or just connect, feel free to reach out.</p>
+    </div>
+
+    <aside class="about-sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">currently</div>
+        <div class="sidebar-value">SOC Analyst Intern</div>
+        <div class="sidebar-sub">NebraskaCYBER MATRIX</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">degree</div>
+        <div class="sidebar-value">BS Cybersecurity, Fast Track MS</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">minor</div>
+        <div class="sidebar-value">Computer Science</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">concentrations</div>
+        <div class="sidebar-value">NSA CAE-CO (Cyber Operations)</div>
+        <div class="sidebar-value">NSA CAE-CD (Cyber Defense)</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">location</div>
+        <div class="sidebar-value">Omaha, NE</div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label mono">links</div>
+        <a href="https://github.com/Eduardo-Sec" class="sidebar-link mono" target="_blank" rel="noopener noreferrer">github →</a>
+        <a href="{% url 'contact' %}" class="sidebar-link mono">contact →</a>
+        <a href="{% url 'pgp' %}" class="sidebar-link mono">pgp →</a>
+      </div>
+    </aside>
+
+  </div>
+</section>
+{% endblock %}
