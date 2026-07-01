@@ -12,6 +12,16 @@
       });
     }
 
+    // ── NAV SCROLL STATE ──
+    const siteNav = document.getElementById('site-nav');
+    if (siteNav) {
+      function updateNavScrolled() {
+        siteNav.classList.toggle('scrolled', window.scrollY > 8);
+      }
+      updateNavScrolled();
+      window.addEventListener('scroll', updateNavScrolled, { passive: true });
+    }
+
     // ── CODE HEADER (lang label + copy button) ──
     document.querySelectorAll('.post-content .highlight').forEach(function (block) {
       const code = block.querySelector('code');
@@ -49,6 +59,22 @@
       });
     });
 
+    // ── COPY AS MARKDOWN ──
+    const copyMdBtn = document.getElementById('copy-md-btn');
+    if (copyMdBtn) {
+      copyMdBtn.addEventListener('click', function () {
+        const raw = document.getElementById('raw-markdown');
+        if (!raw) return;
+        const text = JSON.parse(raw.textContent);
+        navigator.clipboard.writeText(text).then(function () {
+          copyMdBtn.textContent = 'copied';
+          setTimeout(function () {
+            copyMdBtn.textContent = 'copy as markdown';
+          }, 2000);
+        });
+      });
+    }
+
     // ── SCROLL FADE-IN ──
     const observer = new IntersectionObserver(
       function (entries) {
@@ -71,6 +97,132 @@
       }
     });
 
+    // ── READING PROGRESS BAR ──
+    const progressBar = document.getElementById('reading-progress-bar');
+    const postContent = document.querySelector('.post-content');
+    if (progressBar && postContent) {
+      function updateProgress() {
+        const rect = postContent.getBoundingClientRect();
+        const total = rect.height - window.innerHeight;
+        const scrolled = -rect.top;
+        const pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0;
+        progressBar.style.width = pct + '%';
+      }
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+    }
+
+    // ── SCROLL-SPY TOC ──
+    const tocLinks = document.querySelectorAll('.toc-body a[href^="#"]');
+    if (tocLinks.length) {
+      const headingMap = new Map();
+      tocLinks.forEach(function (link) {
+        const id = link.getAttribute('href').slice(1);
+        const heading = document.getElementById(id);
+        if (heading) headingMap.set(heading, link);
+      });
+
+      const spy = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            const link = headingMap.get(entry.target);
+            if (!link) return;
+            if (entry.isIntersecting) {
+              tocLinks.forEach(function (l) { l.classList.remove('active'); });
+              link.classList.add('active');
+            }
+          });
+        },
+        { rootMargin: '-80px 0px -70% 0px', threshold: 0 }
+      );
+
+      headingMap.forEach(function (link, heading) { spy.observe(heading); });
+    }
+
+  });
+
+  // ── COMMAND PALETTE ──
+  document.addEventListener('DOMContentLoaded', function () {
+    const overlay = document.getElementById('cmdk-overlay');
+    const input = document.getElementById('cmdk-input');
+    const results = document.getElementById('cmdk-results');
+    const trigger = document.getElementById('cmdk-trigger');
+    if (!overlay || !input || !results) return;
+
+    let activeIndex = -1;
+    let currentItems = [];
+    let debounceTimer = null;
+
+    function renderItems(items) {
+      currentItems = items;
+      activeIndex = -1;
+      if (!items.length) {
+        results.innerHTML = '<div class="cmdk-empty">no results</div>';
+        return;
+      }
+      results.innerHTML = items.map(function (item, i) {
+        return '<a href="' + item.url + '" class="cmdk-item" data-index="' + i + '">' +
+          '<span class="cmdk-item-title">' + item.title + '</span>' +
+          '<span class="cmdk-item-tag mono">' + item.tag + '</span>' +
+          '</a>';
+      }).join('');
+    }
+
+    function fetchResults(q) {
+      fetch('/cmdk-search/?q=' + encodeURIComponent(q))
+        .then(function (r) { return r.json(); })
+        .then(function (data) { renderItems(data.results || []); })
+        .catch(function () { renderItems([]); });
+    }
+
+    function openPalette() {
+      overlay.classList.add('open');
+      input.value = '';
+      input.focus();
+      fetchResults('');
+    }
+
+    function closePalette() {
+      overlay.classList.remove('open');
+    }
+
+    if (trigger) trigger.addEventListener('click', openPalette);
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        overlay.classList.contains('open') ? closePalette() : openPalette();
+      } else if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        closePalette();
+      } else if (overlay.classList.contains('open') && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+        e.preventDefault();
+        const items = results.querySelectorAll('.cmdk-item');
+        if (!items.length) return;
+        items[activeIndex] && items[activeIndex].classList.remove('active');
+        if (e.key === 'ArrowDown') activeIndex = (activeIndex + 1) % items.length;
+        else activeIndex = (activeIndex - 1 + items.length) % items.length;
+        items[activeIndex].classList.add('active');
+        items[activeIndex].scrollIntoView({ block: 'nearest' });
+      } else if (overlay.classList.contains('open') && e.key === 'Enter') {
+        const items = results.querySelectorAll('.cmdk-item');
+        if (activeIndex >= 0 && items[activeIndex]) {
+          window.location.href = items[activeIndex].getAttribute('href');
+        } else if (items.length) {
+          window.location.href = items[0].getAttribute('href');
+        }
+      }
+    });
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closePalette();
+    });
+
+    input.addEventListener('input', function () {
+      clearTimeout(debounceTimer);
+      const q = input.value.trim();
+      debounceTimer = setTimeout(function () { fetchResults(q); }, 200);
+    });
   });
 
   // ── CUSTOM CURSOR (desktop only) ──
@@ -143,11 +295,11 @@
   document.querySelectorAll('a, button').forEach(function (el) {
     el.addEventListener('mouseenter', function () {
       dot.style.transform = 'translate(-50%, -50%) scale(2.5)';
-      dot.style.background = '#9333ea';
+      dot.style.background = '#34d399';
     });
     el.addEventListener('mouseleave', function () {
       dot.style.transform = 'translate(-50%, -50%) scale(1)';
-      dot.style.background = '#7c3aed';
+      dot.style.background = '#059669';
     });
   });
 

@@ -21,6 +21,7 @@ class Writeup(models.Model):
     date = models.DateField()
     description = models.CharField(max_length=500, blank=True)
     body = models.TextField()
+    featured = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag, blank=True, related_name='writeups')
 
     class Meta:

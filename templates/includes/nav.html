@@ -1,21 +1,26 @@
-<nav>
+<nav id="site-nav">
   <a href="{% url 'home' %}" class="nav-logo">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="2.5" fill="#a855f7"/>
-      <circle cx="12" cy="12" r="6.5" stroke="#a855f7" stroke-width="1" opacity="0.5"/>
-      <circle cx="12" cy="12" r="11" stroke="#a855f7" stroke-width="0.8" opacity="0.22"/>
-      <line x1="12" y1="12" x2="20" y2="5.5" stroke="#a855f7" stroke-width="1.1" opacity="0.65" stroke-linecap="round"/>
+      <circle cx="12" cy="12" r="2.5" fill="#10b981"/>
+      <circle cx="12" cy="12" r="6.5" stroke="#10b981" stroke-width="1" opacity="0.5"/>
+      <circle cx="12" cy="12" r="11" stroke="#10b981" stroke-width="0.8" opacity="0.22"/>
+      <line x1="12" y1="12" x2="20" y2="5.5" stroke="#10b981" stroke-width="1.1" opacity="0.65" stroke-linecap="round"/>
     </svg>
     <span class="nav-logo-text mono">eb<span class="nav-logo-dot">.</span>dev</span>
   </a>
   <div class="nav-links">
-    <a href="{% url 'about' %}">about</a>
-    <a href="{% url 'writeup_list' %}">writeups</a>
-    <a href="{% url 'projects' %}">projects</a>
-    <a href="{% url 'resume' %}">resume</a>
-    <a href="{% url 'contact' %}">contact</a>
-    <a href="{% url 'pgp' %}">pgp</a>
+    <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">about</a>
+    <a href="{% url 'writeup_list' %}" class="{% if request.resolver_match.url_name == 'writeup_list' or request.resolver_match.url_name == 'writeup_detail' %}active{% endif %}">writeups</a>
+    <a href="{% url 'projects' %}" class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">projects</a>
+    <a href="{% url 'resume' %}" class="{% if request.resolver_match.url_name == 'resume' %}active{% endif %}">resume</a>
+    <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">contact</a>
+    <a href="{% url 'pgp' %}" class="{% if request.resolver_match.url_name == 'pgp' %}active{% endif %}">pgp</a>
+    <a href="{% url 'rss_page' %}" class="{% if request.resolver_match.url_name == 'rss_page' %}active{% endif %}">rss</a>
   </div>
+  <button class="nav-search-trigger mono" id="cmdk-trigger" aria-label="open search">
+    <span>⌕ search</span>
+    <span class="nav-search-kbd"><span>Ctrl</span><span>K</span></span>
+  </button>
   <button class="nav-toggle" aria-label="toggle menu">
     <span></span>
     <span></span>

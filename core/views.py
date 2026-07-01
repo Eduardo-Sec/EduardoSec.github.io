@@ -1,16 +1,28 @@
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
+from django.http import JsonResponse
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 from .models import Tag, Writeup
 from .markdown import render_markdown
+
+STATIC_PAGES = [
+    {'title': 'About', 'url_name': 'about'},
+    {'title': 'Writeups', 'url_name': 'writeup_list'},
+    {'title': 'Projects', 'url_name': 'projects'},
+    {'title': 'Resume', 'url_name': 'resume'},
+    {'title': 'Contact', 'url_name': 'contact'},
+    {'title': 'PGP', 'url_name': 'pgp'},
+]
 
 
 def _site_context():
     return {
         'site_title': settings.SITE_TITLE,
         'site_description': settings.SITE_DESCRIPTION,
+        'site_url': settings.SITE_URL,
         'certs_in_progress': settings.CERTS_IN_PROGRESS,
         'tools_and_technologies': settings.TOOLS_AND_TECHNOLOGIES,
         'analyst_start_date': settings.ANALYST_START_DATE,
@@ -46,6 +58,25 @@ def writeup_search(request):
         qs = qs.filter(tags__slug=tag)
 
     return render(request, 'writeups/_rows.html', {'writeups': qs})
+
+
+def cmdk_search(request):
+    q = request.GET.get('q', '').strip()
+    results = []
+
+    for page in STATIC_PAGES:
+        if not q or q.lower() in page['title'].lower():
+            results.append({'title': page['title'], 'url': reverse(page['url_name']), 'tag': 'page'})
+
+    if q:
+        writeups = Writeup.objects.filter(title__icontains=q).order_by('-date')[:8]
+    else:
+        writeups = Writeup.objects.order_by('-date')[:5]
+
+    for w in writeups:
+        results.append({'title': w.title, 'url': w.get_absolute_url(), 'tag': w.primary_tag or 'writeup'})
+
+    return JsonResponse({'results': results[:10]})
 
 
 def writeup_detail(request, slug):
@@ -97,3 +128,9 @@ def contact(request):
 
 def pgp(request):
     return render(request, 'pgp.html', _site_context())
+
+
+def rss_page(request):
+    ctx = _site_context()
+    ctx['recent_writeups'] = Writeup.objects.prefetch_related('tags').order_by('-date')[:15]
+    return render(request, 'rss.html', ctx)

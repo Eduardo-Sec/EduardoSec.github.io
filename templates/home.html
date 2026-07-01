@@ -48,10 +48,20 @@
           <div class="soc-stat">
             <div class="soc-stat-value mono" data-target="{{ writeup_count }}">0</div>
             <div class="soc-stat-label mono">writeups</div>
+            <svg class="soc-sparkline" viewBox="0 0 100 24" preserveAspectRatio="none">
+              <path class="spark-fill" d="M0,20 L15,18 L30,19 L45,13 L60,14 L75,7 L100,4 L100,24 L0,24 Z"></path>
+              <path class="spark-line" d="M0,20 L15,18 L30,19 L45,13 L60,14 L75,7 L100,4"></path>
+              <circle class="spark-dot" cx="100" cy="4" r="2"></circle>
+            </svg>
           </div>
           <div class="soc-stat">
             <div class="soc-stat-value mono" id="soc-days">0</div>
             <div class="soc-stat-label mono">days as analyst</div>
+            <svg class="soc-sparkline" viewBox="0 0 100 24" preserveAspectRatio="none">
+              <path class="spark-fill" d="M0,22 L20,20 L40,17 L60,12 L80,8 L100,3 L100,24 L0,24 Z"></path>
+              <path class="spark-line" d="M0,22 L20,20 L40,17 L60,12 L80,8 L100,3"></path>
+              <circle class="spark-dot" cx="100" cy="3" r="2"></circle>
+            </svg>
           </div>
           <div class="soc-stat">
             <div class="soc-stat-value mono">{{ certs_in_progress }}</div>
@@ -104,7 +114,7 @@
     <a href="{{ writeup.get_absolute_url }}" class="writeup-row">
       <div class="writeup-left">
         <div class="writeup-dot"></div>
-        <span class="writeup-title">{{ writeup.title }}</span>
+        <span class="writeup-title">{% if writeup.featured %}<span class="featured-badge">★</span>{% endif %} {{ writeup.title }}</span>
       </div>
       <div class="writeup-right">
         <span class="writeup-tag">{{ writeup.primary_tag }}</span>
@@ -114,8 +124,8 @@
     {% empty %}
     <div class="writeup-row">
       <div class="writeup-left">
-        <div class="writeup-dot" style="background:#2a2a2a;"></div>
-        <span class="writeup-title" style="color:#555;">Writeups coming soon</span>
+        <div class="writeup-dot writeup-dot--empty"></div>
+        <span class="writeup-title writeup-title--empty">Writeups coming soon</span>
       </div>
     </div>
     {% endfor %}

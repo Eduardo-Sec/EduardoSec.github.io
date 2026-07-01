@@ -10,8 +10,8 @@
         <style>
           * { box-sizing: border-box; margin: 0; padding: 0; }
           body {
-            background: #0f0f0f;
-            color: #d0d0d0;
+            background: #0a0d0b;
+            color: #d4dbd7;
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             margin: 0;
@@ -29,26 +29,26 @@
           .feed-tag {
             font-family: monospace;
             font-size: 14px;
-            color: #a855f7;
+            color: #10b981;
             margin-bottom: 12px;
           }
           h1 {
             font-size: 44px;
             font-weight: 600;
-            color: #f4f4f4;
+            color: #ffffff;
             letter-spacing: -0.03em;
             margin-bottom: 8px;
             line-height: 1.08;
           }
-          h1 em { color: #a855f7; font-style: normal; }
+          h1 em { color: #10b981; font-style: normal; }
           .feed-desc {
             font-size: 14px;
-            color: #888;
+            color: #8a938e;
             margin-bottom: 16px;
           }
           .subscribe {
-            background: #0d0d0d;
-            border: 1px solid #1e1e1e;
+            background: #0d1310;
+            border: 1px solid #1c2620;
             border-radius: 8px;
             padding: 20px 24px;
             margin: 24px 0 32px;
@@ -56,70 +56,70 @@
           .subscribe-title {
             font-family: monospace;
             font-size: 12px;
-            color: #a855f7;
+            color: #10b981;
             margin-bottom: 10px;
             letter-spacing: 0.06em;
           }
           .subscribe p {
             font-size: 13px;
-            color: #888;
+            color: #8a938e;
             margin-bottom: 14px;
             line-height: 1.7;
           }
           .subscribe-url {
-            background: #111;
-            border: 1px solid #222;
+            background: #101613;
+            border: 1px solid #1c2620;
             border-radius: 6px;
             padding: 10px 14px;
           }
           .subscribe-url code {
             font-family: monospace;
-            color: #a855f7;
+            color: #10b981;
             font-size: 12px;
           }
           .feed-header {
             margin-bottom: 32px;
             padding-bottom: 24px;
-            border-bottom: 1px solid #1e1e1e;
+            border-bottom: 1px solid #1c2620;
           }
           .items {
-            border: 1px solid #1e1e1e;
+            border: 1px solid #1c2620;
             border-radius: 10px;
             overflow: hidden;
           }
           .item {
             padding: 18px 24px;
-            background: #0d0d0d;
-            border-bottom: 1px solid #141414;
+            background: #0d1310;
+            border-bottom: 1px solid #141d18;
             display: flex;
             align-items: center;
             justify-content: space-between;
           }
           .item:last-child { border-bottom: none; }
-          .item:hover { background: #101010; }
+          .item:hover { background: #101613; }
           .item a {
             font-size: 14px;
-            color: #d8d8d8;
+            color: #d4dbd7;
             text-decoration: none;
           }
-          .item a:hover { color: #a855f7; }
+          .item a:hover { color: #10b981; }
           .item-date {
             font-family: monospace;
             font-size: 11px;
-            color: #555;
+            color: #545b57;
           }
           .back {
             display: inline-block;
             font-family: monospace;
             font-size: 12px;
-            color: #888;
+            color: #8a938e;
             text-decoration: none;
             margin-bottom: 20px;
             transition: color 0.15s ease;
           }
-          .back:hover { color: #a855f7; }
+          .back:hover { color: #10b981; }
           footer {
-            border-top: 1px solid #141414;
+            border-top: 1px solid #141d18;
             width: 100%;
           }
           .status-bar {
@@ -127,7 +127,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 14px 48px;
-            background: #060606;
+            background: #080b09;
           }
           .status-left {
             display: flex;
@@ -138,18 +138,18 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #22c55e;
+            background: #10b981;
             display: inline-block;
           }
           .status-text {
             font-family: monospace;
             font-size: 12px;
-            color: #888;
+            color: #8a938e;
           }
           .status-right {
             font-family: monospace;
             font-size: 12px;
-            color: #888;
+            color: #8a938e;
           }
         </style>
       </head>
