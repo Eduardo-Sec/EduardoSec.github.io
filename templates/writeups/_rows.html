@@ -2,7 +2,7 @@
 <a href="{{ writeup.get_absolute_url }}" class="writeup-row">
   <div class="writeup-left">
     <div class="writeup-dot"></div>
-    <span class="writeup-title">{{ writeup.title }}</span>
+    <span class="writeup-title">{% if writeup.featured %}<span class="featured-badge">★</span>{% endif %} {{ writeup.title }}</span>
   </div>
   <div class="writeup-right">
     <span class="writeup-tag">{{ writeup.primary_tag }}</span>
@@ -12,8 +12,8 @@
 {% empty %}
 <div class="writeup-row">
   <div class="writeup-left">
-    <div class="writeup-dot" style="background:#2a2a2a;"></div>
-    <span class="writeup-title" style="color:#555;">No results found</span>
+    <div class="writeup-dot writeup-dot--empty"></div>
+    <span class="writeup-title writeup-title--empty">No results found</span>
   </div>
 </div>
 {% endfor %}

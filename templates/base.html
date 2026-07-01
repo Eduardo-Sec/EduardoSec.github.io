@@ -14,6 +14,9 @@
   <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
   <link rel="manifest" href="{% static 'site.webmanifest' %}">
 
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="{{ site_title }}" href="{% url 'rss_feed' %}">
+
   <!-- Open Graph -->
   <meta property="og:type" content="{% block og_type %}website{% endblock %}">
   <meta property="og:title" content="{% block og_title %}{{ site_title }}{% endblock %}">
@@ -28,6 +31,21 @@
   <meta name="twitter:description" content="{% block twitter_description %}{{ site_description }}{% endblock %}">
   <meta name="twitter:image" content="{% static 'og-image.png' %}">
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Eduardo Bustamante",
+    "url": "{{ site_url }}",
+    "jobTitle": "SOC Analyst Intern",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Nebraska Omaha"
+    },
+    "description": "{{ site_description }}"
+  }
+  </script>
+
   {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -36,6 +54,16 @@
     {% block main %}{% endblock %}
   </main>
   {% include 'includes/footer.html' %}
+
+  <div class="cmdk-overlay" id="cmdk-overlay">
+    <div class="cmdk-modal">
+      <div class="cmdk-input-row">
+        <input type="text" class="cmdk-input" id="cmdk-input" placeholder="Search writeups and pages..." autocomplete="off">
+        <span class="cmdk-esc mono">esc</span>
+      </div>
+      <div class="cmdk-results" id="cmdk-results"></div>
+    </div>
+  </div>
 
   <div id="cursor-dot"></div>
   <div id="cursor-bracket"><span></span></div>

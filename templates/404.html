@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}404 · Eduardo Bustamante{% endblock %}
+{% block meta_description %}Page not found.{% endblock %}
+
+{% block main %}
+<div class="error-page fade-in visible">
+  <div class="hero-tag mono">▸ signal lost</div>
+  <div class="error-code mono">404</div>
+  <p class="error-msg">No route to that page. It may have moved, or never existed on this host.</p>
+  <div class="hero-actions">
+    <a href="/" class="btn-primary">Return home</a>
+    <a href="/writeups/" class="btn-secondary">Browse writeups →</a>
+  </div>
+</div>
+{% endblock %}
