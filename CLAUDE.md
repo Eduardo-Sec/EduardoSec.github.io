@@ -16,7 +16,7 @@ Migrating from Hugo static site (GitHub Pages) to a self-hosted Django app on Ro
 - Cloudflare Zero Trust tunnel for public access (no open inbound ports)
 
 ## Design direction
-"Signal intelligence" aesthetic. Dark background, purple accent (#7c3aed range), subtle cool blue-black tones. Clean, purposeful, more Darktrace/Snyk than hacker cave. NOT generic cybersecurity stock-photo energy.
+"Signal intelligence" aesthetic. Dark background, emerald green primary accent (#10b981 range) with a gold secondary accent (#c9a227 range) used sparingly for featured/highlight treatment, bright white primary text. Clean, purposeful, more Darktrace/Snyk than hacker cave. NOT generic cybersecurity stock-photo energy.
 
 Specific design elements already established:
 - Section markers use ▸ (not //)
@@ -66,7 +66,7 @@ The UI/UX Pro Max skill is installed at `.claude/skills/`. Use it for all fronte
 When generating UI, apply the following overrides to the skill's recommendations:
 - Category: Cybersecurity Platform (use its reasoning rules as the base)
 - Style: HUD / Sci-Fi FUI blended with Dark Mode (OLED) — NOT generic cyber
-- Colors: Override skill palette with #7c3aed (purple primary), deep blue-black background, no neon green
+- Colors: Override skill palette with #10b981 (emerald primary), #c9a227 (gold secondary/accent), deep near-black background with a subtle emerald tint, bright white text
 - Typography: Clean monospace for data/code elements, sans-serif for prose
-- Anti-patterns for this project: light mode, stock photo cyber aesthetic, neon green, matrix rain, skulls, padlock icons, generic "hacker" visual language
+- Anti-patterns for this project: light mode, stock photo cyber aesthetic, neon green (this is emerald, not neon), matrix rain, skulls, padlock icons, generic "hacker" visual language
 - The design language is signal intelligence — think Darktrace, Snyk, Cloudflare dashboard — not CTF team website

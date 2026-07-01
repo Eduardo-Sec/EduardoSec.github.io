@@ -7,6 +7,7 @@ APP_DIR="/opt/ebustamante"
 cd "$APP_DIR"
 
 echo "==> Pulling latest code"
+git config --global --add safe.directory "$APP_DIR" 2>/dev/null || true
 git pull
 
 echo "==> Installing any new dependencies"

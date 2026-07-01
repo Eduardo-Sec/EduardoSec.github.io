@@ -14,8 +14,9 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Writeup)
 class WriteupAdmin(admin.ModelAdmin):
-    list_display = ['title', 'date', 'tag_list', 'reading_time']
-    list_filter = ['tags', 'date']
+    list_display = ['title', 'date', 'tag_list', 'reading_time', 'featured']
+    list_filter = ['tags', 'date', 'featured']
+    list_editable = ['featured']
     search_fields = ['title', 'body']
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ['tags']

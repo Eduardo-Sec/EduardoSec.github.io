@@ -8,11 +8,26 @@
 {% block twitter_title %}{{ writeup.title }} · {{ site_title }}{% endblock %}
 {% block twitter_description %}{% if writeup.description %}{{ writeup.description }}{% else %}{{ site_description }}{% endif %}{% endblock %}
 
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ writeup.title|escapejs }}",
+  "datePublished": "{{ writeup.date|date:'c' }}",
+  "author": { "@type": "Person", "name": "Eduardo Bustamante" },
+  "description": "{{ writeup.description|default:site_description|escapejs }}"
+}
+</script>
+{% endblock %}
+
 {% block main %}
+<div class="reading-progress-track"><div class="reading-progress-bar" id="reading-progress-bar"></div></div>
+
 <div class="page-hero">
   <a href="{% url 'writeup_list' %}" class="back-btn mono">← writeups</a>
   <div class="hero-tag mono">▸ {{ writeup.primary_tag }}</div>
-  <h1>{{ writeup.title }}<em>.</em></h1>
+  <h1>{% if writeup.featured %}<span class="featured-badge">★ featured</span> {% endif %}{{ writeup.title }}<em>.</em></h1>
   <div class="post-meta">
     {% for tag in writeup.tags.all %}
     <a href="{{ tag.get_absolute_url }}" class="writeup-tag">{{ tag.slug }}</a>
@@ -35,9 +50,13 @@
       </div>
     </div>
     {% endif %}
+    <div class="post-actions">
+      <button class="copy-btn mono" id="copy-md-btn">copy as markdown</button>
+    </div>
     {{ content_html }}
   </div>
 </section>
+{{ writeup.body|json_script:"raw-markdown" }}
 
 {% if related_writeups %}
 <section class="site-section fade-in">
@@ -49,7 +68,7 @@
     <a href="{{ related.get_absolute_url }}" class="writeup-row">
       <div class="writeup-left">
         <div class="writeup-dot"></div>
-        <span class="writeup-title">{{ related.title }}</span>
+        <span class="writeup-title">{% if related.featured %}<span class="featured-badge">★</span>{% endif %} {{ related.title }}</span>
       </div>
       <div class="writeup-right">
         <span class="writeup-tag">{{ related.primary_tag }}</span>
