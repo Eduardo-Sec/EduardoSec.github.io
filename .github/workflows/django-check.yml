@@ -27,7 +27,7 @@ jobs:
       # this pin in lockstep with the server is what caught the last two
       # Dependabot major-version incidents before they could merge.
       - name: Set up Python 3.11
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: '3.11'
 
