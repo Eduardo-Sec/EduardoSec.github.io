@@ -2,10 +2,10 @@
   "name": "Eduardo Bustamante",
   "short_name": "eb.dev",
   "icons": [
-    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
-    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+    { "src": "/static/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/static/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
   ],
-  "theme_color": "#0f0f0f",
-  "background_color": "#0f0f0f",
+  "theme_color": "#0a0d0b",
+  "background_color": "#0a0d0b",
   "display": "standalone"
 }
