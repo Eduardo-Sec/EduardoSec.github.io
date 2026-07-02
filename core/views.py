@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.safestring import mark_safe
@@ -132,6 +132,39 @@ def contact(request):
 
 def pgp(request):
     return render(request, 'pgp.html', _site_context())
+
+
+def security_txt(request):
+    # Reads from the static file rather than hardcoding its content here so
+    # the existing security-txt.yml GitHub Action (auto-renews the Expires
+    # date via a PR) keeps working against a single source of truth.
+    path = settings.BASE_DIR / 'static' / '.well-known' / 'security.txt'
+    return HttpResponse(path.read_text(), content_type='text/plain')
+
+
+def robots_txt(request):
+    content = (
+        'User-agent: *\n'
+        'Allow: /\n'
+        'Disallow: /admin/\n'
+    )
+    return HttpResponse(content, content_type='text/plain')
+
+
+def humans_txt(request):
+    content = (
+        '/* TEAM */\n'
+        'Developer: Eduardo Bustamante\n'
+        'Contact: eabustamante1 [at] gmail.com\n'
+        'From: Omaha, NE\n'
+        '\n'
+        '/* SITE */\n'
+        'Last update: 2026/07/02\n'
+        'Language: English\n'
+        'Doctype: HTML5\n'
+        'Components: Django, HTMX, mistune\n'
+    )
+    return HttpResponse(content, content_type='text/plain')
 
 
 def webmanifest(request):
