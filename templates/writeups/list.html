@@ -54,7 +54,7 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
+<script nonce="{{ request.csp_nonce }}">
   (function () {
     const buttons = document.querySelectorAll('.tag-filter-btn');
     const activeTagInput = document.getElementById('active-tag');
