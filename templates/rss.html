@@ -16,10 +16,10 @@
   <div class="section-header">
     <span class="section-num mono">▸ what is this</span>
   </div>
-  <p style="max-width:640px; color:var(--text-muted); margin-bottom:20px; line-height:1.7;">
+  <p class="rss-intro">
     This is a standard RSS feed. Paste the URL below into any feed reader (Feedly, NewsBlur, NetNewsWire) and you'll get notified whenever a new writeup goes up.
   </p>
-  <div class="pgp-command mono" style="max-width:480px;">{{ site_url }}{% url 'rss_feed' %}</div>
+  <div class="pgp-command mono rss-feed-url">{{ site_url }}{% url 'rss_feed' %}</div>
 </section>
 
 <section class="site-section fade-in">

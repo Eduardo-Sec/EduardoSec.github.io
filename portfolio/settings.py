@@ -30,6 +30,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.csp.ContentSecurityPolicyMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
@@ -75,6 +76,18 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Content-hashed filenames (e.g. main.a3f8c9.css) so a changed file gets a
+# new URL instead of relying on Cloudflare/browsers to notice bytes changed
+# at the same old URL -- no more manual cache purges after every deploy.
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage',
+    },
+}
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Site metadata used in templates
@@ -105,8 +118,10 @@ if not DEBUG:
     SESSION_COOKIE_SAMESITE = 'Strict'
     SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
     SECURE_SSL_REDIRECT = True
-    # Start conservative (1 hour) — raise once confirmed stable, add
-    # SECURE_HSTS_PRELOAD only when ready to commit long-term (browser
-    # preload lists take months to reverse).
-    SECURE_HSTS_SECONDS = 3600
+    # Raised from the initial 1hr trial period to 1 day now that HTTPS has
+    # run clean in production. Still holding off on INCLUDE_SUBDOMAINS (no
+    # subdomains exist yet, no benefit) and PRELOAD (submitting to browser
+    # preload lists takes months to reverse -- wait for a longer clean run
+    # at this duration first).
+    SECURE_HSTS_SECONDS = 86400
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False

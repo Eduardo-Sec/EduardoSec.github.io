@@ -5,6 +5,7 @@ from .feeds import WriteupFeed
 urlpatterns = [
     path('', views.home, name='home'),
     path('index.xml', WriteupFeed(), name='rss_feed'),
+    path('site.webmanifest', views.webmanifest, name='webmanifest'),
     path('rss/', views.rss_page, name='rss_page'),
     path('about/', views.about, name='about'),
     path('writeups/', views.writeup_list, name='writeup_list'),
