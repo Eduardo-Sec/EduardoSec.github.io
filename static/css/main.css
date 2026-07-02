@@ -145,6 +145,8 @@ nav.scrolled {
   color: var(--text-dim);
 }
 
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -166,6 +168,7 @@ nav.scrolled {
 
 @media (max-width: 768px) {
   nav { padding: 16px 24px; }
+  .nav-actions { gap: 8px; }
   .nav-toggle { display: flex; }
   .nav-search-trigger { padding: 8px; gap: 0; }
   .nav-search-label, .nav-search-kbd { display: none; }
@@ -858,6 +861,27 @@ nav.scrolled {
   border-radius: 4px;
   padding: 2px 6px;
   font-family: 'JetBrains Mono', monospace;
+}
+
+.cmdk-close {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .cmdk-esc { display: none; }
+  .cmdk-close { display: flex; }
 }
 
 .cmdk-results { max-height: 360px; overflow-y: auto; padding: 8px; }
