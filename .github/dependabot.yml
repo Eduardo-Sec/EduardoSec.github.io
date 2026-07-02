@@ -13,5 +13,14 @@ updates:
     commit-message:
       prefix: "chore"
     ignore:
-      - dependency-name: "*"
+      # The wildcard dependency-name "*" + semver-major ignore rule
+      # didn't reliably block major-version PRs in practice (django
+      # 6.0 and gunicorn 26 both got proposed anyway) -- pinning each
+      # package explicitly instead, since that's the pattern actually
+      # documented as reliable. Both are capped here because the
+      # server runs Python 3.9: Django 5+ needs 3.10+, gunicorn 24+
+      # needs 3.10+.
+      - dependency-name: "django"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "gunicorn"
         update-types: ["version-update:semver-major"]
