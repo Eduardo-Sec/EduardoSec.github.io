@@ -231,10 +231,7 @@ nav.scrolled {
 }
 
 .hero h1 em {
-  background: linear-gradient(135deg, var(--ac-bright), var(--gold));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ac);
   font-style: normal;
 }
 
@@ -579,10 +576,7 @@ nav.scrolled {
 }
 
 .page-hero h1 em {
-  background: linear-gradient(135deg, var(--ac-bright), var(--gold));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ac);
   font-style: normal;
 }
 .page-hero .hero-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 540px; }
