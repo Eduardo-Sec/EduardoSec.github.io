@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.db.models import Q
 from django.http import JsonResponse
+from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
@@ -131,6 +132,20 @@ def contact(request):
 
 def pgp(request):
     return render(request, 'pgp.html', _site_context())
+
+
+def webmanifest(request):
+    return JsonResponse({
+        'name': 'Eduardo Bustamante',
+        'short_name': 'eb.dev',
+        'icons': [
+            {'src': static('favicon-32x32.png'), 'sizes': '32x32', 'type': 'image/png'},
+            {'src': static('apple-touch-icon.png'), 'sizes': '180x180', 'type': 'image/png'},
+        ],
+        'theme_color': '#0a0d0b',
+        'background_color': '#0a0d0b',
+        'display': 'standalone',
+    }, content_type='application/manifest+json')
 
 
 def rss_page(request):
