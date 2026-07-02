@@ -17,14 +17,16 @@
     <a href="{% url 'pgp' %}" class="{% if request.resolver_match.url_name == 'pgp' %}active{% endif %}">pgp</a>
     <a href="{% url 'rss_page' %}" class="{% if request.resolver_match.url_name == 'rss_page' %}active{% endif %}">rss</a>
   </div>
-  <button class="nav-search-trigger mono" id="cmdk-trigger" aria-label="open search">
-    <span class="nav-search-icon">⌕</span>
-    <span class="nav-search-label">search</span>
-    <span class="nav-search-kbd"><span>Ctrl</span><span>K</span></span>
-  </button>
-  <button class="nav-toggle" aria-label="toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+  <div class="nav-actions">
+    <button class="nav-search-trigger mono" id="cmdk-trigger" aria-label="open search">
+      <span class="nav-search-icon">⌕</span>
+      <span class="nav-search-label">search</span>
+      <span class="nav-search-kbd"><span>Ctrl</span><span>K</span></span>
+    </button>
+    <button class="nav-toggle" aria-label="toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
 </nav>
