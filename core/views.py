@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 
 from .models import Tag, Writeup
 from .markdown import render_markdown
+from .ratelimit import rate_limit
 
 STATIC_PAGES = [
     {'title': 'About', 'url_name': 'about'},
@@ -47,6 +48,7 @@ def writeup_list(request):
     return render(request, 'writeups/list.html', ctx)
 
 
+@rate_limit('writeup_search', limit=30, window_seconds=60)
 def writeup_search(request):
     q = request.GET.get('q', '').strip()
     tag = request.GET.get('tag', '').strip()
@@ -60,6 +62,7 @@ def writeup_search(request):
     return render(request, 'writeups/_rows.html', {'writeups': qs})
 
 
+@rate_limit('cmdk_search', limit=30, window_seconds=60)
 def cmdk_search(request):
     q = request.GET.get('q', '').strip()
     results = []
