@@ -21,14 +21,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
-      # Matches the server's actual Python version (Rocky Linux 9's
-      # default python3) -- this is exactly the version mismatch that
-      # let two Dependabot major-version bumps break the server before
-      # anyone noticed. This check would have caught both before merge.
-      - name: Set up Python 3.9
+      # Matches the server's actual Python version. Deliberately NOT the
+      # OS default python3 (still 3.9 on Rocky 9) -- python3.11 is
+      # installed alongside it specifically for this app's venv. Keeping
+      # this pin in lockstep with the server is what caught the last two
+      # Dependabot major-version incidents before they could merge.
+      - name: Set up Python 3.11
         uses: actions/setup-python@v6
         with:
-          python-version: '3.9'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
