@@ -1,6 +1,20 @@
 (function () {
   'use strict';
 
+  // ── RESET UI STATE ON BACK/FORWARD NAVIGATION ──
+  // Browsers restore a bfcache'd page exactly as it looked when you
+  // navigated away (mobile menu open, command palette open, etc.)
+  // instead of loading fresh -- DOMContentLoaded doesn't refire for
+  // a bfcache restore, so this has to be a standalone listener, not
+  // nested inside the DOMContentLoaded block below.
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    const links = document.querySelector('.nav-links');
+    if (links) links.classList.remove('open');
+    const overlay = document.getElementById('cmdk-overlay');
+    if (overlay) overlay.classList.remove('open');
+  });
+
   document.addEventListener('DOMContentLoaded', function () {
 
     // ── NAV TOGGLE ──
@@ -156,6 +170,7 @@
     const input = document.getElementById('cmdk-input');
     const results = document.getElementById('cmdk-results');
     const trigger = document.getElementById('cmdk-trigger');
+    const closeBtn = document.getElementById('cmdk-close');
     if (!overlay || !input || !results) return;
 
     let activeIndex = -1;
@@ -196,6 +211,7 @@
     }
 
     if (trigger) trigger.addEventListener('click', openPalette);
+    if (closeBtn) closeBtn.addEventListener('click', closePalette);
 
     document.addEventListener('keydown', function (e) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
