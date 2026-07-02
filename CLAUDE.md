@@ -7,7 +7,7 @@ Portfolio site for Eduardo Bustamante (ebustamante.dev) — a cybersecurity/CS s
 Migrating from Hugo static site (GitHub Pages) to a self-hosted Django app on Rocky Linux 9 (10.10.10.60), served by Nginx, tunneled through Cloudflare Zero Trust. The Hugo theme and content are in this repo and serve as the source of truth for design and content.
 
 ## Stack decisions
-- Django 4.2 (app server)
+- Django 5.2 LTS (app server, Python 3.11)
 - Nginx (reverse proxy)
 - HTMX (dynamic filtering/search on writeups, no JS framework)
 - mistune (server-side markdown rendering)
