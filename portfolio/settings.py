@@ -97,3 +97,16 @@ if not DEBUG:
     X_FRAME_OPTIONS = 'DENY'
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+    # Django 4+ checks the browser's Origin/Referer against this list when
+    # TLS is terminated upstream (Cloudflare) instead of on this server —
+    # without it, admin logins fail CSRF checks even though everything
+    # else is configured correctly.
+    CSRF_TRUSTED_ORIGINS = [SITE_URL]
+    SESSION_COOKIE_SAMESITE = 'Strict'
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+    SECURE_SSL_REDIRECT = True
+    # Start conservative (1 hour) — raise once confirmed stable, add
+    # SECURE_HSTS_PRELOAD only when ready to commit long-term (browser
+    # preload lists take months to reverse).
+    SECURE_HSTS_SECONDS = 3600
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
