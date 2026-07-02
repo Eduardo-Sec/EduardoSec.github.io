@@ -22,12 +22,14 @@ jobs:
           echo ""
           echo "=== HEADER AUDIT ==="
 
+          MISSING=0
           check_header() {
             HEADER=$1
             if echo "$HEADERS" | grep -qi "^$HEADER:"; then
               echo "✓ $HEADER present"
             else
               echo "✗ $HEADER missing"
+              MISSING=1
             fi
           }
 
@@ -39,7 +41,8 @@ jobs:
           check_header "content-security-policy"
           check_header "cross-origin-opener-policy"
 
-          echo ""
-          echo "Note: CSP, COOP, and X-Frame-Options require server-level"
-          echo "control and are not configurable on GitHub Pages."
-          echo "These will be addressed during Nginx migration."
+          if [ "$MISSING" -eq 1 ]; then
+            echo ""
+            echo "One or more expected security headers is missing."
+            exit 1
+          fi
