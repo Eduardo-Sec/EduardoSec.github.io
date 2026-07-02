@@ -167,7 +167,9 @@ nav.scrolled {
 @media (max-width: 768px) {
   nav { padding: 16px 24px; }
   .nav-toggle { display: flex; }
-  .nav-search-trigger { display: none; }
+  .nav-search-trigger { padding: 8px; gap: 0; }
+  .nav-search-label, .nav-search-kbd { display: none; }
+  .nav-search-icon { font-size: 17px; line-height: 1; }
   .nav-links {
     display: none;
     position: absolute;
