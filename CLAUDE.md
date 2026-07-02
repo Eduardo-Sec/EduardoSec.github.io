@@ -1,7 +1,7 @@
 # Project Context
 
 ## What this is
-Portfolio site for Eduardo Bustamante (ebustamante.dev) — a cybersecurity/CS sophomore at UNO with dual NSA CAE concentrations, working as a SOC Analyst Intern. The site documents homelab builds, detection engineering work, and CTF writeups.
+Portfolio site for Eduardo Bustamante (ebustamante.dev) — a cybersecurity/CS sophomore at UNO with dual NSA CAE concentrations, working as a Cybersecurity Engineer Intern at Sera Digital Corp. The site documents homelab builds, detection engineering work, and CTF writeups.
 
 ## Migration goal
 Migrating from Hugo static site (GitHub Pages) to a self-hosted Django app on Rocky Linux 9 (10.10.10.60), served by Nginx, tunneled through Cloudflare Zero Trust. The Hugo theme and content are in this repo and serve as the source of truth for design and content.
