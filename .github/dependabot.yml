@@ -14,12 +14,19 @@ updates:
       prefix: "chore"
     ignore:
       # The wildcard dependency-name "*" + semver-major ignore rule
-      # didn't reliably block major-version PRs in practice (django
-      # 6.0 and gunicorn 26 both got proposed anyway) -- pinning each
-      # package explicitly instead, since that's the pattern actually
-      # documented as reliable. Both are capped here because the
-      # server runs Python 3.9: Django 5+ needs 3.10+, gunicorn 24+
-      # needs 3.10+.
+      # didn't reliably block major-version PRs in practice -- pinning
+      # each package explicitly instead, since that's the pattern
+      # actually documented as reliable.
+      #
+      # As of the Python 3.9 -> 3.11 / Django 4.2 -> 5.2 upgrade, the
+      # server's floor moved but the *policy* doesn't change: major
+      # version bumps for these two packages always need a manual
+      # Python-compatibility check before merging, since gunicorn and
+      # Django both tend to raise their minimum Python version on
+      # major releases (Django 6.0 already needs 3.12+, above our
+      # 3.11 floor -- next gunicorn major may do the same). Keep this
+      # ignore rule even after future Python upgrades; just re-verify
+      # compatibility manually each time before removing it.
       - dependency-name: "django"
         update-types: ["version-update:semver-major"]
       - dependency-name: "gunicorn"

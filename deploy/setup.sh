@@ -9,7 +9,11 @@ REPO_URL="https://github.com/Eduardo-Sec/EduardoSec.github.io.git"
 LOG_DIR="/var/log/ebustamante"
 
 echo "==> Installing system packages"
-dnf install -y python3 python3-pip python3-devel nginx git
+# python3.11 alongside the OS default python3 (still 3.9 on Rocky 9) --
+# Django 5.2 LTS needs >=3.10, and nothing else on the OS should be
+# pointed at a non-default python3, so this installs side by side
+# rather than replacing the system interpreter.
+dnf install -y python3.11 python3.11-pip python3.11-devel nginx git
 
 echo "==> Creating app user"
 useradd -r -s /sbin/nologin -d "$APP_DIR" "$APP_USER" 2>/dev/null || echo "User already exists"
@@ -20,7 +24,7 @@ git clone "$REPO_URL" "$APP_DIR"
 git -C "$APP_DIR" checkout master
 
 echo "==> Creating virtual environment"
-python3 -m venv "$APP_DIR/.venv"
+python3.11 -m venv "$APP_DIR/.venv"
 "$APP_DIR/.venv/bin/pip" install --upgrade pip --quiet
 "$APP_DIR/.venv/bin/pip" install -r "$APP_DIR/requirements.txt" --quiet
 
