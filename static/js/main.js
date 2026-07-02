@@ -12,6 +12,14 @@
       });
     }
 
+    // ── BACK BUTTON (avoids javascript: URLs, which CSP's script-src blocks) ──
+    document.querySelectorAll('[data-back]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        history.back();
+      });
+    });
+
     // ── NAV SCROLL STATE ──
     const siteNav = document.getElementById('site-nav');
     if (siteNav) {

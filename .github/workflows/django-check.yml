@@ -1,0 +1,50 @@
+name: Django checks
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SECRET_KEY: ci-only-not-a-real-secret-key-used-for-checks
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      # Matches the server's actual Python version (Rocky Linux 9's
+      # default python3) -- this is exactly the version mismatch that
+      # let two Dependabot major-version bumps break the server before
+      # anyone noticed. This check would have caught both before merge.
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run system checks
+        run: python manage.py check
+
+      - name: Check for missing migrations
+        run: python manage.py makemigrations --check --dry-run
+
+      - name: Run deployment checks
+        run: python manage.py check --deploy
+        env:
+          DJANGO_DEBUG: 'false'
+          DJANGO_ALLOWED_HOSTS: 'ebustamante.dev'
+          SITE_URL: 'https://ebustamante.dev'
+
+      - name: Verify static files collect cleanly
+        run: python manage.py collectstatic --noinput
