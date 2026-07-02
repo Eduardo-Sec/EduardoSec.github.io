@@ -9,7 +9,7 @@
 {% block twitter_description %}{% if writeup.description %}{{ writeup.description }}{% else %}{{ site_description }}{% endif %}{% endblock %}
 
 {% block extra_head %}
-<script type="application/ld+json">
+<script type="application/ld+json" nonce="{{ request.csp_nonce }}">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -82,7 +82,7 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
+<script nonce="{{ request.csp_nonce }}">
   (function () {
     const trigger = document.getElementById('toc-trigger');
     const body = document.getElementById('toc-body');
